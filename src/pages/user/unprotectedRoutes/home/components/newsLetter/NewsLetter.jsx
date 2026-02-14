@@ -175,8 +175,8 @@ const NewsLetter = () => {
           <div className="help">
             <h3>We are happy to help you</h3>
             <div className="link">
-              <a href="#">+91-8989898989</a>
-              <a href="#">admin@comeflywithme.co.in</a>
+              <a href="#">+91-7601020668</a>
+              <a href="#">admin@comeflywithme.in</a>
             </div>
           </div>
         </div>
