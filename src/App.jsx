@@ -55,6 +55,7 @@ import {
   UserBaliCustomStandard,
   UserBaliCustomDelux,
   UserBaliCustomPremium,
+  UserBooking,
   UserPhuket,
   UserPhuketFriends,
   UserPhuketFriendsStandard,
@@ -113,6 +114,10 @@ const userUnprotectedRoutesData = [
   {
     path: "/",
     element: <UserHome />,
+  },
+  {
+    path: "/booking",
+    element: <UserBooking />,
   },
   {
     path: "/about-us",

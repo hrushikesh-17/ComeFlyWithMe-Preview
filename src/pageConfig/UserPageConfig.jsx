@@ -109,6 +109,11 @@ export const UserBaliCustomPremium = lazy(() =>
   )
 );
 
+//Booking
+export const UserBooking = lazy(() =>
+  import("@/pages/user/unprotectedRoutes/booking/Booking")
+);
+
 //Phuket
 export const UserPhuket = lazy(() =>
   import("@/pages/user/unprotectedRoutes/phuket/Phuket")

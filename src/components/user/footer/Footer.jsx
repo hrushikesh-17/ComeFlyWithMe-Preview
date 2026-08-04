@@ -4,27 +4,24 @@ import "./footer.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { footerFadeInAnimation } from "@/utils/animations/animations";
 
-//Routing
+// Routing
 import { Link } from "react-router-dom";
 
-//Alert
+// Alert
 import { toast } from "react-hot-toast";
 
-//Util
+// Util
 import { userContactUsSchema } from "@/utils/validation/userValidations";
 
-///Global Component
+// Global Component
 import CircularProgressBar from "@/components/global/circularProgressBar/CircularProgressBar";
 
-//Assets
-import facebookImg from "@/assets/facebookImg.webp";
-import twitterImg from "@/assets/instagramImg.webp";
+// Assets
 import instagramImg from "@/assets/twitterImg.webp";
-import linkendInImg from "@/assets/linkedInImg.webp";
 import buttonArrowImg from "@/assets/rightArrow.webp";
 import closeImg from "@/assets/error.webp";
 
-//Redux
+// Redux
 import { usePostContactUsMutation } from "@/redux/slice/user/api/userApiSlice";
 
 const Footer = () => {
@@ -36,6 +33,7 @@ const Footer = () => {
   const handleChange = async (e) => {
     const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
+
     try {
       await userContactUsSchema.validateAt(name, { [name]: value });
       setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
@@ -47,16 +45,19 @@ const Footer = () => {
   const handleSubmit = async () => {
     try {
       await userContactUsSchema.validate({ ...details }, { abortEarly: false });
+
       const response = await PostContactUs({ ...details });
-      console.log(response);
+
       if (response?.data?.data) {
         toast.success(response?.data?.data?.message);
+
         setDetails({
           fullName: "",
           phone: "",
           email: "",
           message: "",
         });
+
         setErrors({});
       }
 
@@ -66,11 +67,12 @@ const Footer = () => {
       }
     } catch (err) {
       const newErrors = {};
+
       if (err) {
         err.inner.forEach((err) => {
-          console.log(err);
           newErrors[err.path] = err.message;
         });
+
         setErrors(newErrors);
       }
     }
@@ -87,6 +89,7 @@ const Footer = () => {
       <h2 className="heading">
         Journey Beyond Boundaries, Discover the <span>World with Us</span>
       </h2>
+
       <AnimatePresence>
         {open && (
           <motion.div
@@ -100,6 +103,7 @@ const Footer = () => {
               <h2>Get in touch</h2>
               <img src={closeImg} alt="" onClick={handleFormClose} />
             </div>
+
             <div className="form-container">
               <div className="form-container-left">
                 <div>
@@ -114,6 +118,7 @@ const Footer = () => {
                     <p className="error-text">{errors?.fullName}</p>
                   )}
                 </div>
+
                 <div>
                   <input
                     type="text"
@@ -126,6 +131,7 @@ const Footer = () => {
                     <p className="error-text">{errors?.phone}</p>
                   )}
                 </div>
+
                 <div>
                   <input
                     type="text"
@@ -139,19 +145,22 @@ const Footer = () => {
                   )}
                 </div>
               </div>
+
               <div className="form-container-right">
                 <div className="input">
                   <p className="title">Tell us how can we help</p>
+
                   <textarea
-                    type="text"
                     name="message"
                     value={details?.message}
                     onChange={handleChange}
                   />
+
                   {errors?.message && (
                     <p className="error-text">{errors?.message}</p>
                   )}
                 </div>
+
                 <button onClick={handleSubmit} className="authButton">
                   {isLoading ? (
                     <CircularProgressBar />
@@ -174,21 +183,18 @@ const Footer = () => {
             <Link to="/terms-and-conditions">Terms & Conditions</Link>
             <Link to="/refund-policy">Refund Policy</Link>
           </div>
+
           <div className="socials">
-            <a href="#">
-              <img src={facebookImg} alt="" />
-            </a>
-            <a href="#">
-              <img src={instagramImg} alt="" />
-            </a>
-            <a href="#">
-              <img src={twitterImg} alt="" />
-            </a>
-            <a href="#">
-              <img src={linkendInImg} alt="" />
+            <a
+              href="https://www.instagram.com/comeflywithme.in/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={instagramImg} alt="Instagram" />
             </a>
           </div>
         </div>
+
         <div className="links-right">
           <button onClick={() => setOpen(true)}>
             Reach out <img src={buttonArrowImg} alt="" />
