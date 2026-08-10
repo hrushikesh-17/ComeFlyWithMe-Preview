@@ -93,7 +93,9 @@ const SignatureDestinations = () => {
             >
               <div
                 className="destination-image"
-                onClick={() => handleDestinationClick(destination)}
+                onClick={() =>
+                  handleDestinationClick(destination)
+                }
               >
                 <img
                   src={destination.image}
@@ -106,7 +108,6 @@ const SignatureDestinations = () => {
               </div>
 
               <div className="destination-content">
-
                 <p>
                   {destination.subtitle}
                 </p>
@@ -117,11 +118,8 @@ const SignatureDestinations = () => {
                     handleDestinationClick(destination)
                   }
                 >
-                  {destination.type === "destination"
-                    ? "Explore Journey →"
-                    : "Plan This Journey →"}
+                  Explore Journey →
                 </button>
-
               </div>
             </div>
           ))}
