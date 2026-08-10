@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import logo from "@/assets/logo.webp";
 
 const s = {
@@ -171,9 +172,16 @@ const s = {
 };
 
 const Booking = () => {
+  const location = useLocation();
+
   const [step, setStep] = useState(1);
 
-  const [destination, setDestination] = useState("");
+  // If the user came from a destination card,
+  // automatically fill the "To" field.
+  const [destination, setDestination] = useState(
+    location.state?.destination || ""
+  );
+
   const [isFlying, setIsFlying] = useState(false);
 
   const [selectedChip, setSelectedChip] = useState("");
@@ -553,6 +561,7 @@ Travellers: ${formData.count}`;
               ].map((chip) => (
                 <button
                   key={chip}
+                  type="button"
                   onClick={() =>
                     setSelectedChip(chip)
                   }
@@ -586,6 +595,7 @@ Travellers: ${formData.count}`;
               </span>
 
               <button
+                type="button"
                 style={s.btnGold}
                 onClick={handleSubmit}
               >
@@ -784,6 +794,7 @@ Travellers: ${formData.count}`;
 
               <div style={s.actions}>
                 <button
+                  type="button"
                   style={s.btnOutline}
                   onClick={() => setStep(1)}
                 >
@@ -791,6 +802,7 @@ Travellers: ${formData.count}`;
                 </button>
 
                 <button
+                  type="button"
                   style={s.btnGold}
                   onClick={addToCart}
                 >
@@ -798,6 +810,7 @@ Travellers: ${formData.count}`;
                 </button>
 
                 <button
+                  type="button"
                   style={{
                     ...s.btnGold,
                     background: "#25D366",
@@ -808,6 +821,7 @@ Travellers: ${formData.count}`;
                 </button>
 
                 <button
+                  type="button"
                   style={{
                     ...s.btnGold,
                     background: "#bc6c25",
@@ -818,6 +832,7 @@ Travellers: ${formData.count}`;
                 </button>
 
                 <button
+                  type="button"
                   style={{
                     ...s.btnGold,
                     background: "#283618",

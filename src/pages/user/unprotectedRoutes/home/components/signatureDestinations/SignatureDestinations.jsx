@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./signatureDestinations.scss";
 
+// Assets
 import indonesiaImg from "@/assets/indonesia.jpg";
 import thailandImg from "@/assets/thailand.jpg";
 import vietnamImg from "@/assets/vietnam.jpg";
-import japanImg from "@/assets/japan.jpg";
 import malaysiaImg from "@/assets/malaysia.jpg";
 import singaporeImg from "@/assets/singapore.jpg";
 import philippinesImg from "@/assets/philippines.jpg";
@@ -14,48 +14,57 @@ const destinations = [
     title: "Indonesia",
     subtitle: "Luxury Islands • Temples • Adventure",
     image: indonesiaImg,
+    type: "destination",
     link: "/bali",
   },
   {
     title: "Thailand",
     subtitle: "Beaches • Wellness • Nightlife",
     image: thailandImg,
+    type: "destination",
     link: "/phuket",
   },
   {
     title: "Vietnam",
     subtitle: "Culture • Nature • Cuisine",
     image: vietnamImg,
-    link: "/booking",
-  },
-  {
-    title: "Japan",
-    subtitle: "Tradition • Cities • Seasons",
-    image: japanImg,
-    link: "/booking",
+    type: "booking",
   },
   {
     title: "Malaysia",
     subtitle: "Rainforests • Islands • Skyline",
     image: malaysiaImg,
-    link: "/booking",
+    type: "booking",
   },
   {
     title: "Singapore",
     subtitle: "Luxury • Shopping • Gardens",
     image: singaporeImg,
-    link: "/booking",
+    type: "booking",
   },
   {
     title: "Philippines",
     subtitle: "Crystal Waters • Hidden Islands",
     image: philippinesImg,
-    link: "/booking",
+    type: "booking",
   },
 ];
 
 const SignatureDestinations = () => {
   const navigate = useNavigate();
+
+  const handleDestinationClick = (destination) => {
+    if (destination.type === "destination") {
+      navigate(destination.link);
+      return;
+    }
+
+    navigate("/booking", {
+      state: {
+        destination: destination.title,
+      },
+    });
+  };
 
   return (
     <section className="signature-destinations">
@@ -81,10 +90,11 @@ const SignatureDestinations = () => {
             <div
               className="destination-card"
               key={destination.title}
-              onClick={() => navigate(destination.link)}
             >
-              <div className="destination-image">
-
+              <div
+                className="destination-image"
+                onClick={() => handleDestinationClick(destination)}
+              >
                 <img
                   src={destination.image}
                   alt={destination.title}
@@ -93,26 +103,30 @@ const SignatureDestinations = () => {
                 <div className="image-title">
                   <h3>{destination.title}</h3>
                 </div>
-
               </div>
 
               <div className="destination-content">
 
-                <p>{destination.subtitle}</p>
+                <p>
+                  {destination.subtitle}
+                </p>
 
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(destination.link);
-                  }}
+                  type="button"
+                  onClick={() =>
+                    handleDestinationClick(destination)
+                  }
                 >
-                  Explore Journey →
+                  {destination.type === "destination"
+                    ? "Explore Journey →"
+                    : "Plan This Journey →"}
                 </button>
 
               </div>
-
             </div>
           ))}
+
+          {/* BESPOKE JOURNEY */}
 
           <div className="destination-card custom-card">
 
@@ -133,6 +147,7 @@ const SignatureDestinations = () => {
             </p>
 
             <button
+              type="button"
               onClick={() => navigate("/booking")}
             >
               Design My Journey →
@@ -141,7 +156,6 @@ const SignatureDestinations = () => {
           </div>
 
         </div>
-
       </div>
     </section>
   );
