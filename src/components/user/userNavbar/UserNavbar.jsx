@@ -16,14 +16,6 @@ const UserNavbar = () => {
 
   const navData = [
     {
-      name: "Home",
-      path: "/",
-    },
-    {
-      name: "About Us",
-      path: "/about-us",
-    },
-    {
       name: "Destinations",
       path: "/",
     },
@@ -52,9 +44,14 @@ const UserNavbar = () => {
               className={navOpen ? "hamBox hamBoxOpen" : "hamBox"}
               onClick={handleNavClick}
             >
-              <span className={navOpen ? "lineTop spin" : "lineTop"}></span>
               <span
-                className={navOpen ? "lineBottom spin" : "lineBottom"}
+                className={navOpen ? "lineTop spin" : "lineTop"}
+              ></span>
+
+              <span
+                className={
+                  navOpen ? "lineBottom spin" : "lineBottom"
+                }
               ></span>
             </div>
           </div>
