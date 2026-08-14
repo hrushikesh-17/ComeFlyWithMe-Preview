@@ -4,7 +4,7 @@ import { Suspense } from "react";
 // PACKAGE PAGE
 // =====================================================
 
-import PackagePage from "./pages/user/unprotectedRoutes/packagePage/PackagePage";
+import PackagePage from "./pages/user/unprotectedRoutes/packagepage/PackagePage";
 
 // =====================================================
 // PACKAGE CONFIG TEST
