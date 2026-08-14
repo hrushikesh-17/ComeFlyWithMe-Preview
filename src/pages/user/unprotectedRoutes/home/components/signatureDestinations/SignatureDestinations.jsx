@@ -14,39 +14,37 @@ const destinations = [
     title: "Indonesia",
     subtitle: "Luxury Islands • Temples • Adventure",
     image: indonesiaImg,
-    type: "destination",
     link: "/bali",
   },
   {
     title: "Thailand",
     subtitle: "Beaches • Wellness • Nightlife",
     image: thailandImg,
-    type: "destination",
     link: "/phuket",
   },
   {
     title: "Vietnam",
     subtitle: "Culture • Nature • Cuisine",
     image: vietnamImg,
-    type: "booking",
+    link: "/vietnam",
   },
   {
     title: "Malaysia",
     subtitle: "Rainforests • Islands • Skyline",
     image: malaysiaImg,
-    type: "booking",
+    link: "/malaysia",
   },
   {
     title: "Singapore",
     subtitle: "Luxury • Shopping • Gardens",
     image: singaporeImg,
-    type: "booking",
+    link: "/singapore",
   },
   {
     title: "Philippines",
     subtitle: "Crystal Waters • Hidden Islands",
     image: philippinesImg,
-    type: "booking",
+    link: "/philippines",
   },
 ];
 
@@ -54,16 +52,7 @@ const SignatureDestinations = () => {
   const navigate = useNavigate();
 
   const handleDestinationClick = (destination) => {
-    if (destination.type === "destination") {
-      navigate(destination.link);
-      return;
-    }
-
-    navigate("/booking", {
-      state: {
-        destination: destination.title,
-      },
-    });
+    navigate(destination.link);
   };
 
   return (
