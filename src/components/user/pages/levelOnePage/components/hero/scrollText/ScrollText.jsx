@@ -13,7 +13,10 @@ const ScrollText = ({ content }) => {
       <div className="introduction-inner">
         <p>
           {content.map((item, index) => (
-            <ContentLine key={index} content={item} />
+            <ContentLine
+              key={index}
+              content={item}
+            />
           ))}
         </p>
       </div>
@@ -24,22 +27,37 @@ const ScrollText = ({ content }) => {
 const ContentLine = ({ content }) => {
   const contentRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: contentRef,
-    offset: ["end center", "start start"],
-  });
+  const { scrollYProgress } = useScroll();
 
-  const scrollValue = useTransform(scrollYProgress, [0, 0.08], ["100%", "0%"]);
-  const clipPathVal = useMotionTemplate`inset(0% ${scrollValue} 0% 0%)`;
+  const scrollValue = useTransform(
+    scrollYProgress,
+    [0, 0.08],
+    ["100%", "0%"]
+  );
+
+  const clipPathVal = useMotionTemplate`
+    inset(0% ${scrollValue} 0% 0%)
+  `;
 
   return (
-    <span className="introduction-text-container" ref={contentRef}>
+    <span
+      className="introduction-text-container"
+      ref={contentRef}
+      style={{
+        position: "relative",
+      }}
+    >
       <motion.span
-        style={{ clipPath: clipPathVal }}
+        style={{
+          clipPath: clipPathVal,
+        }}
         className="introduction-highlighted-text"
         data-text={content}
       />
-      <span className="introduction-static-text">{content}</span>
+
+      <span className="introduction-static-text">
+        {content}
+      </span>
     </span>
   );
 };

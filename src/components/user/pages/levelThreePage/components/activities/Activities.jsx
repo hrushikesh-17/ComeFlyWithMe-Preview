@@ -1,6 +1,6 @@
 import "./activities.scss";
 
-//Slider
+// Slider
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
@@ -8,6 +8,7 @@ const Activities = ({ data }) => {
   return (
     <div className="splide-wrapper">
       <h2>Activities we provide</h2>
+
       <Splide
         options={{
           type: "loop",
@@ -33,10 +34,10 @@ const Activities = ({ data }) => {
         }}
         aria-label="My Splide Slider"
       >
-        {data?.sliderImg.map((slide, index) => (
+        {data?.sliderImg?.map((slide, index) => (
           <SplideSlide key={index}>
             <div className="images">
-              <img src={slide} />
+              <img src={slide} alt={`Activity ${index + 1}`} />
             </div>
           </SplideSlide>
         ))}

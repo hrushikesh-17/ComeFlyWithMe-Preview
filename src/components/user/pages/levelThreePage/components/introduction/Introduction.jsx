@@ -1,50 +1,59 @@
 import { useEffect, useRef } from "react";
 import "./introduction.scss";
 
-//Animation
+// Animation
 import { useScroll } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 
-//Components
+// Components
 import Card from "./card/Card";
 
-//Assets
-
 const Introduction = ({ activities }) => {
-  console.log(activities);
   const container = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
+  // Use page scroll instead of target-based scroll.
+  // This removes the Framer Motion warning about
+  // the container needing a non-static position.
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const lenis = new Lenis();
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    let animationFrameId;
 
-    requestAnimationFrame(raf);
+    const raf = (time) => {
+      lenis.raf(time);
+      animationFrameId = requestAnimationFrame(raf);
+    };
+
+    animationFrameId = requestAnimationFrame(raf);
 
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(animationFrameId);
+      lenis.destroy();
     };
   }, []);
+
+  if (!activities || activities.length === 0) {
+    return null;
+  }
 
   return (
     <main ref={container} className="activities-introduction">
       {activities.map((activity, i) => {
-        const targetScale = 1 - (activities.length - i) * 0.05;
+        const targetScale =
+          1 - (activities.length - i) * 0.05;
+
         return (
           <Card
             activity={activity}
             key={`p_${i}`}
             i={i}
             progress={scrollYProgress}
-            range={[i / (activities.length - 1), 1]}
+            range={[
+              i / Math.max(activities.length - 1, 1),
+              1,
+            ]}
             targetScale={targetScale}
             image={activity.image}
           />

@@ -3,17 +3,22 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.scss";
 
-//Routing
+// Routing
 import { BrowserRouter } from "react-router-dom";
 
-//Redux
+// Redux
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store.js";
 import ScrollToTop from "./utils/scrollToTop/ScrollToTop.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Provider store={store}>
         <ScrollToTop>
           <App />

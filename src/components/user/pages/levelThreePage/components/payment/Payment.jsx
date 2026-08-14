@@ -33,25 +33,30 @@ const Payment = ({ data }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { isAuthenticated } = useSelector((state) => state.authUser);
+
   const [errors, setErrors] = useState({});
+
   const [details, setDetails] = useState({
     start_date: "",
     end_date: "",
     no_of_adults: "",
     no_of_children: "",
-    termsAndCondition: "",
+    termsAndCondition: false,
   });
+
   const [minStartDate, setMinStartDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [createOrder] = useCreateOrderMutation();
   const [createCustomOrder] = useCreateCustomOrderMutation();
 
-  const { data: singlePendingOrder, error } = useUserGetCustomPendingOrderQuery(
-    location?.search?.split("=")[1],
-    { skip: location?.search?.length <= 0 }
-  );
+  const { data: singlePendingOrder, error } =
+    useUserGetCustomPendingOrderQuery(
+      location?.search?.split("=")[1],
+      { skip: location?.search?.length <= 0 }
+    );
 
   useEffect(() => {
     if (singlePendingOrder?.data) {
@@ -63,8 +68,10 @@ const Payment = ({ data }) => {
     if (isAuthenticated) {
       dispatch(setParamsQuery(null));
     }
+
     if (location?.pathname) {
       const separatedUrl = location?.pathname?.split("/");
+
       if (separatedUrl) {
         setDetails((prevDetails) => ({
           ...prevDetails,
@@ -77,12 +84,15 @@ const Payment = ({ data }) => {
 
     const oneMonthLater = new Date();
     oneMonthLater.setMonth(oneMonthLater.getMonth() + 1);
+
     const minDate = oneMonthLater.toISOString().split("T")[0];
+
     setMinStartDate(minDate);
   }, [location, isAuthenticated, dispatch]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     const newValue = type === "checkbox" ? checked : value;
 
     setDetails((prevDetails) => ({
@@ -93,9 +103,12 @@ const Payment = ({ data }) => {
 
   useEffect(() => {
     let totalDays = location?.pathname.includes("premium") ? 8 : 6;
+
     if (details.start_date) {
       const startDate = new Date(details.start_date);
+
       startDate.setDate(startDate.getDate() + totalDays);
+
       const endDate = startDate.toISOString().split("T")[0];
 
       setDetails((prevDetails) => ({
@@ -103,12 +116,14 @@ const Payment = ({ data }) => {
         end_date: endDate,
       }));
     }
-  }, [details.start_date]);
+  }, [details.start_date, location?.pathname]);
 
   useEffect(() => {
     const script = document.createElement("script");
+
     script.src = `${import.meta.env.VITE_API_RAZOR_PAY}`;
     script.async = true;
+
     document.body.appendChild(script);
 
     return () => {
@@ -119,20 +134,34 @@ const Payment = ({ data }) => {
   const paymentWindow = (orderResponse) => {
     const options = {
       key: `${import.meta.env.VITE_API_RAZOR_PAY_KEY}`,
-      amount: orderResponse?.amount_due ?? orderResponse?.total_amount,
+
+      amount:
+        orderResponse?.amount_due ??
+        orderResponse?.total_amount,
+
       currency: orderResponse?.currency ?? "INR",
+
       name: "Come Fly With Me",
+
       description: "Transaction",
-      order_id: orderResponse?.id ?? orderResponse?.order_id,
-      callback_url: "https://comeflywithme.co.in/payment-success",
+
+      order_id:
+        orderResponse?.id ??
+        orderResponse?.order_id,
+
+      callback_url:
+        "https://comeflywithme.co.in/payment-success",
+
       handler: async function (response) {
         try {
           toast.success("Payment successful!");
+
           setDetails({
             start_date: "",
             end_date: "",
             no_of_adults: "",
             no_of_children: "",
+            termsAndCondition: false,
           });
         } catch (err) {
           toast.error("Payment verification failed!");
@@ -140,9 +169,11 @@ const Payment = ({ data }) => {
           setIsLoading(false);
         }
       },
+
       theme: {
         color: "#151515",
       },
+
       modal: {
         ondismiss: () => {
           setIsLoading(false);
@@ -152,28 +183,48 @@ const Payment = ({ data }) => {
     };
 
     const rzp = new window.Razorpay(options);
+
     rzp.open();
   };
 
   const handlePayment = async (e) => {
     e.preventDefault();
+
     setIsLoading(true);
 
-    let userData = JSON.parse(sessionStorage.getItem("user"));
+    let userData = JSON.parse(
+      sessionStorage.getItem("user")
+    );
+
     if (!userData) {
-      navigate(`/login?page=${location?.pathname.replace(/\//g, "?")}`);
+      navigate(
+        `/login?page=${location?.pathname.replace(
+          /\//g,
+          "?"
+        )}`
+      );
+
       setIsLoading(false);
+
       return;
     }
 
     try {
       const oneMonthLater = new Date(minStartDate);
+
       if (new Date(details.start_date) < oneMonthLater) {
-        toast.error("Start date must be at least one month from today");
+        toast.error(
+          "Start date must be at least one month from today"
+        );
+
         setIsLoading(false);
+
         return;
       }
-      await createOrderSchemaSecond.validate(details, { abortEarly: false });
+
+      await createOrderSchemaSecond.validate(details, {
+        abortEarly: false,
+      });
 
       const orderResponse = await createOrder({
         currency: "INR",
@@ -185,31 +236,47 @@ const Payment = ({ data }) => {
         toast.error(
           "Please select a start date that is at least one month from today"
         );
+
         setIsLoading(false);
+
         return;
       }
-      await paymentWindow({ ...orderResponse?.data?.data });
+
+      await paymentWindow({
+        ...orderResponse?.data?.data,
+      });
     } catch (err) {
       if (err.inner) {
         const newErrors = {};
+
         err.inner.forEach((error) => {
           newErrors[error.path] = error.message;
         });
+
         setErrors(newErrors);
       } else {
         toast.error("Something went wrong!");
       }
+
       setIsLoading(false);
     }
   };
 
   const handleCreateOrder = async (e) => {
     e.preventDefault();
+
     try {
-      await createOrderSchemaSecond.validate(details, { abortEarly: false });
-      const response = await createCustomOrder({ ...details });
+      await createOrderSchemaSecond.validate(details, {
+        abortEarly: false,
+      });
+
+      const response = await createCustomOrder({
+        ...details,
+      });
+
       if (response?.data?.statusCode == 201) {
         toast.success(response?.data?.message);
+
         setDetails({});
       } else {
         toast.error(response?.data?.message);
@@ -217,9 +284,11 @@ const Payment = ({ data }) => {
     } catch (err) {
       if (err.inner) {
         const newErrors = {};
+
         err.inner.forEach((error) => {
           newErrors[error.path] = error.message;
         });
+
         setErrors(newErrors);
       }
     }
@@ -227,22 +296,29 @@ const Payment = ({ data }) => {
 
   useEffect(() => {
     if (singlePendingOrder?.data[0]?.total_amount) {
-      paymentWindow({ ...singlePendingOrder?.data[0] });
+      paymentWindow({
+        ...singlePendingOrder?.data[0],
+      });
     }
+
     if (error) {
       toast?.error(singlePendingOrder?.data?.message);
       navigate("/");
     }
-  }, [singlePendingOrder]);
+  }, [singlePendingOrder, error]);
 
   return (
     <div className="payment">
       <h2>Book Your Slot</h2>
+
       <form className="payment-form">
         <div className="input-fields">
           <div className="container">
             <div className="input">
-              <label htmlFor="start_date">Start date :</label>
+              <label htmlFor="start_date">
+                Start date :
+              </label>
+
               <input
                 type="date"
                 name="start_date"
@@ -251,12 +327,19 @@ const Payment = ({ data }) => {
                 min={minStartDate}
                 required
               />
+
               {errors?.start_date && (
-                <p className="error-text-booking">{errors?.start_date}</p>
+                <p className="error-text-booking">
+                  {errors?.start_date}
+                </p>
               )}
             </div>
+
             <div className="input">
-              <label htmlFor="no_of_adults">Number of Adults :</label>
+              <label htmlFor="no_of_adults">
+                Number of Adults :
+              </label>
+
               <select
                 name="no_of_adults"
                 onChange={handleChange}
@@ -266,20 +349,31 @@ const Payment = ({ data }) => {
                 <option value="" disabled>
                   Select number of adults
                 </option>
-                {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+
+                {Array.from(
+                  { length: 10 },
+                  (_, i) => i + 1
+                ).map((num) => (
                   <option key={num} value={num}>
                     {num}
                   </option>
                 ))}
               </select>
+
               {errors?.no_of_adults && (
-                <p className="error-text-booking">{errors?.no_of_adults}</p>
+                <p className="error-text-booking">
+                  {errors?.no_of_adults}
+                </p>
               )}
             </div>
           </div>
+
           <div className="container">
             <div className="input">
-              <label htmlFor="end_date">End date :</label>
+              <label htmlFor="end_date">
+                End date :
+              </label>
+
               <input
                 type="date"
                 name="end_date"
@@ -287,14 +381,20 @@ const Payment = ({ data }) => {
                 readOnly
                 required
               />
+
               {errors?.end_date && (
-                <p className="error-text-booking">{errors?.end_date}</p>
+                <p className="error-text-booking">
+                  {errors?.end_date}
+                </p>
               )}
             </div>
 
             {location.pathname.includes("custom") && (
               <div className="input">
-                <label htmlFor="no_of_children">Number of Children :</label>
+                <label htmlFor="no_of_children">
+                  Number of Children :
+                </label>
+
                 <select
                   name="no_of_children"
                   onChange={handleChange}
@@ -304,26 +404,37 @@ const Payment = ({ data }) => {
                   <option value="" disabled>
                     Select number of children
                   </option>
-                  {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+
+                  {Array.from(
+                    { length: 10 },
+                    (_, i) => i + 1
+                  ).map((num) => (
                     <option key={num} value={num}>
                       {num}
                     </option>
                   ))}
                 </select>
+
                 {errors?.no_of_children && (
-                  <p className="error-text-booking">{errors?.no_of_children}</p>
+                  <p className="error-text-booking">
+                    {errors?.no_of_children}
+                  </p>
                 )}
               </div>
             )}
           </div>
         </div>
+
         <div className="price">
           <h3>
-            Price starting from Rs. <span>{data.price}</span> only!
+            Price starting from Rs.{" "}
+            <span>{data.price}</span> only!
           </h3>
+
           <p>
-            Note:- You have to pay a token amount of Rs <span>3,000</span> to
-            book your slot which will be refunded to you.
+            Note:- You have to pay a token amount of Rs{" "}
+            <span>3,000</span> to book your slot which will
+            be refunded to you.
           </p>
         </div>
 
@@ -331,26 +442,37 @@ const Payment = ({ data }) => {
           <div className="checkbox">
             <Checkbox
               required
-              checked={details?.termsAndCondition}
+              checked={Boolean(
+                details?.termsAndCondition
+              )}
               name="termsAndCondition"
               sx={{ color: "#E2E8F0" }}
               onChange={handleChange}
               className="checkbox-box"
             />
+
             <p id="Checkbox-Para">
               By booking slot means, you agree to the{" "}
-              <Link to="/terms-and-conditions" className="Checkbox">
+              <Link
+                to="/terms-and-conditions"
+                className="Checkbox"
+              >
                 Terms & Conditions{" "}
               </Link>
               and our{" "}
-              <Link to="/privacy-policy" className="Checkbox">
-                {" "}
+              <Link
+                to="/privacy-policy"
+                className="Checkbox"
+              >
                 Privacy Policy
               </Link>
             </p>
           </div>
+
           {errors?.termsAndCondition && (
-            <p className="error-text">{errors?.termsAndCondition}</p>
+            <p className="error-text">
+              {errors?.termsAndCondition}
+            </p>
           )}
         </div>
 
