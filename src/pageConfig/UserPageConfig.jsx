@@ -123,7 +123,7 @@ export const UserPhuketCustom = lazy(() =>
 // =====================================================
 
 export const UserVietnam = lazy(() =>
-  import("@/pages/user/unprotectedRoutes/vietnam/Vietnam")
+  import("@/pages/user/unprotectedRoutes/vietnam/vietnam")
 );
 
 export const UserVietnamFriends = lazy(() =>
