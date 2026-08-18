@@ -1,6 +1,12 @@
 // Assets
 import heroImg from "@/assets/malaysia.jpg";
 
+import img1 from "@/assets/malaysia1.jpg";
+import img2 from "@/assets/malaysia2.jpg";
+import img3 from "@/assets/malaysia3.jpg";
+import img4 from "@/assets/malaysia4.jpg";
+import img5 from "@/assets/malaysia5.jpg";
+
 // Package Logos
 import levelOneFriendsLogo from "@/assets/levelOneFriendsLogo.webp";
 import levelOneFamilyLogo from "@/assets/levelOneFamilyLogo.webp";
@@ -31,11 +37,11 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   galleryImg: [
-    heroImg,
-    heroImg,
-    heroImg,
-    heroImg,
-    heroImg,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
   ],
 
   packageData: [

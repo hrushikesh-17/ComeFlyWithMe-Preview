@@ -4,6 +4,12 @@
 
 import heroImg from "@/assets/philippines.jpg";
 
+import img1 from "@/assets/philippines1.jpg";
+import img2 from "@/assets/philippines2.jpg";
+import img3 from "@/assets/philippines3.jpg";
+import img4 from "@/assets/philippines4.jpg";
+import img5 from "@/assets/philippines5.jpg";
+
 // =====================================================
 // PACKAGE LOGOS
 // =====================================================
@@ -46,11 +52,11 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   galleryImg: [
-    heroImg,
-    heroImg,
-    heroImg,
-    heroImg,
-    heroImg,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
   ],
 
   packageData: [

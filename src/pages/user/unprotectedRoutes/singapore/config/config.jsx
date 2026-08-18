@@ -4,6 +4,12 @@
 
 import heroImg from "@/assets/singapore.jpg";
 
+import img1 from "@/assets/singapore1.jpg";
+import img2 from "@/assets/singapore2.jpg";
+import img3 from "@/assets/singapore3.jpg";
+import img4 from "@/assets/singapore4.jpg";
+import img5 from "@/assets/singapore5.jpg";
+
 // =====================================================
 // PACKAGE LOGOS
 // =====================================================
@@ -46,11 +52,11 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   galleryImg: [
-    heroImg,
-    heroImg,
-    heroImg,
-    heroImg,
-    heroImg,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
   ],
 
   packageData: [
