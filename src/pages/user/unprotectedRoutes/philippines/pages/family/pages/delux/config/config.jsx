@@ -1,8 +1,17 @@
 // =====================================================
+// PHILIPPINES - FAMILY DELUX
+// =====================================================
+
+// =====================================================
 // ASSETS
 // =====================================================
 
 import philippines from "@/assets/philippines.jpg";
+import philippines1 from "@/assets/philippines1.jpg";
+import philippines2 from "@/assets/philippines2.jpg";
+import philippines3 from "@/assets/philippines3.jpg";
+import philippines4 from "@/assets/philippines4.jpg";
+import philippines5 from "@/assets/philippines5.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +20,7 @@ import philippines from "@/assets/philippines.jpg";
 export const data = {
   title: "Philippines Family Delux",
 
-  heroImg: philippines,
+  heroImg: philippines3,
 
   content: [
     `Experience the Philippines with your family through a deluxe journey filled with beautiful islands, tropical beaches, delicious food, rich culture, exciting activities, and unforgettable experiences.`,
@@ -27,14 +36,27 @@ export const data = {
   xRange4: ["0%", "-20%"],
   xRangeLast: ["0%", "0%"],
 
+  // ===================================================
+  // SLIDER IMAGES
+  // ===================================================
+
   sliderImg: [
-    philippines,
-    philippines,
-    philippines,
-    philippines,
+    philippines1,
+    philippines2,
+    philippines3,
+    philippines4,
+    philippines5,
   ],
 
+  // ===================================================
+  // PRICE
+  // ===================================================
+
   price: "75,000",
+
+  // ===================================================
+  // PLAN
+  // ===================================================
 
   planTitle: "Philippines Family Delux",
 
@@ -52,7 +74,7 @@ export const data = {
 
       url: "/philippines/family/delux",
 
-      image: philippines,
+      image: philippines3,
     },
   ],
 };
@@ -67,7 +89,7 @@ export const activities = [
 
     title: "Arrival Day",
 
-    image: philippines,
+    image: philippines1,
 
     color: "DDA15E",
 
@@ -97,7 +119,7 @@ export const activities = [
 
     title: "Island and Beach Exploration",
 
-    image: philippines,
+    image: philippines2,
 
     color: "F5CFDE",
 
@@ -129,7 +151,7 @@ export const activities = [
 
     title: "Culture and Discovery",
 
-    image: philippines,
+    image: philippines3,
 
     color: "EB7E67",
 
@@ -161,7 +183,7 @@ export const activities = [
 
     title: "Family Adventure Day",
 
-    image: philippines,
+    image: philippines4,
 
     color: "FFE894",
 
@@ -193,7 +215,7 @@ export const activities = [
 
     title: "Local Experiences",
 
-    image: philippines,
+    image: philippines5,
 
     color: "83D3FC",
 
@@ -258,7 +280,7 @@ export const activities = [
 
     title: "Departure Day",
 
-    image: philippines,
+    image: philippines1,
 
     color: "F2A7B3",
 

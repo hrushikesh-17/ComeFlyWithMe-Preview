@@ -2,7 +2,7 @@
 // MALAYSIA - FAMILY PREMIUM
 // =====================================================
 
-import malaysia from "@/assets/malaysia.jpg";
+import familyPremium from "@/assets/familyPremium.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +11,7 @@ import malaysia from "@/assets/malaysia.jpg";
 export const data = {
   title: "Malaysia Family Premium",
 
-  heroImg: malaysia,
+  heroImg: familyPremium,
 
   content: [
     `Experience Malaysia with your family through a premium journey filled with beautiful places, delicious food, exciting activities, comfort, and unforgettable experiences.`,
@@ -28,9 +28,9 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   sliderImg: [
-    malaysia,
-    malaysia,
-    malaysia,
+    familyPremium,
+    familyPremium,
+    familyPremium,
   ],
 
   price: "75,000",
@@ -44,7 +44,7 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: malaysia,
+    image: familyPremium,
     color: "DDA15E",
 
     plans: [
@@ -68,7 +68,7 @@ export const activities = [
   {
     day: 1,
     title: "Malaysia City Exploration",
-    image: malaysia,
+    image: familyPremium,
     color: "F5CFDE",
 
     plans: [
@@ -93,7 +93,7 @@ export const activities = [
   {
     day: 2,
     title: "Culture and Heritage",
-    image: malaysia,
+    image: familyPremium,
     color: "EB7E67",
 
     plans: [
@@ -118,7 +118,7 @@ export const activities = [
   {
     day: 3,
     title: "Premium Adventure Day",
-    image: malaysia,
+    image: familyPremium,
     color: "FFE894",
 
     plans: [
@@ -143,7 +143,7 @@ export const activities = [
   {
     day: 4,
     title: "Local Experiences",
-    image: malaysia,
+    image: familyPremium,
     color: "83D3FC",
 
     plans: [
@@ -167,7 +167,7 @@ export const activities = [
   {
     day: 5,
     title: "Relaxation and Fine Food",
-    image: malaysia,
+    image: familyPremium,
     color: "C7E788",
 
     plans: [
@@ -191,7 +191,7 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: malaysia,
+    image: familyPremium,
     color: "F2A7B3",
 
     plans: [

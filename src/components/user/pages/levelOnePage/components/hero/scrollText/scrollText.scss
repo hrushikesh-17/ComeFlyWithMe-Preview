@@ -1,161 +1,155 @@
 @import "@/index.scss";
 
 .introduction-outer {
-  .introduction-inner {
-    p {
-      display: inline;
-      line-height: 1.3;
+  width: 100%;
+}
 
-      .introduction-text-container {
-        position: relative;
-        overflow: hidden;
-        display: block;
-        margin-bottom: 10px;
-        font-size: 24px;
+.introduction-inner {
+  width: 100%;
 
-        .introduction-highlighted-text {
-          color: $text-orange;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          left: 0;
-          top: 0;
-          z-index: 1;
-          transition: clip-path 0.1s ease;
-
-          &:before {
-            content: attr(data-text);
-            display: inline-block;
-            opacity: 1;
-            font-size: 24px;
-            color: $text-orange;
-          }
-        }
-
-        .introduction-static-text {
-          position: relative;
-          z-index: 0;
-          font-size: 24px;
-          color: $gray;
-        }
-      }
-    }
+  p {
+    display: block;
+    line-height: 1.3;
+    margin: 0;
+    padding: 0;
   }
 }
+
+.introduction-text-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+/* =====================================================
+   BASE / STATIC TEXT
+   ===================================================== */
+
+.introduction-static-text {
+  position: relative;
+  display: block;
+  z-index: 0;
+
+  font-size: 24px;
+  line-height: 1.3;
+  color: $gray;
+}
+
+/* =====================================================
+   HIGHLIGHTED TEXT
+   ===================================================== */
+
+.introduction-highlighted-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+  width: 100%;
+
+  z-index: 1;
+
+  font-size: 24px;
+  line-height: 1.3;
+  color: $text-orange;
+
+  pointer-events: none;
+  white-space: normal;
+
+  will-change: clip-path;
+}
+
+/* =====================================================
+   1700px
+   ===================================================== */
 
 @media (max-width: 1700px) {
-  .introduction-outer {
-    .introduction-inner {
-      p {
-        .introduction-text-container {
-          margin-bottom: 8px;
-          font-size: 23px;
+  .introduction-text-container {
+    margin-bottom: 8px;
+    font-size: 23px;
+  }
 
-          .introduction-highlighted-text {
-            &:before {
-              font-size: 23px;
-            }
-          }
-
-          .introduction-static-text {
-            font-size: 23px;
-          }
-        }
-      }
-    }
+  .introduction-static-text,
+  .introduction-highlighted-text {
+    font-size: 23px;
   }
 }
+
+/* =====================================================
+   1500px
+   ===================================================== */
 
 @media (max-width: 1500px) {
-  .introduction-outer {
-    .introduction-inner {
-      p {
-        .introduction-text-container {
-          margin-bottom: 7.5px;
-          font-size: 22px;
+  .introduction-text-container {
+    margin-bottom: 7.5px;
+    font-size: 22px;
+  }
 
-          .introduction-highlighted-text {
-            &:before {
-              font-size: 22px;
-            }
-          }
-
-          .introduction-static-text {
-            font-size: 22px;
-          }
-        }
-      }
-    }
+  .introduction-static-text,
+  .introduction-highlighted-text {
+    font-size: 22px;
   }
 }
+
+/* =====================================================
+   1200px
+   ===================================================== */
 
 @media (max-width: 1200px) {
-  .introduction-outer {
-    .introduction-inner {
-      p {
-        .introduction-text-container {
-          margin-bottom: 7px;
-          font-size: 20px;
+  .introduction-text-container {
+    margin-bottom: 7px;
+    font-size: 20px;
+  }
 
-          .introduction-highlighted-text {
-            &:before {
-              font-size: 20px;
-            }
-          }
-
-          .introduction-static-text {
-            font-size: 20px;
-          }
-        }
-      }
-    }
+  .introduction-static-text,
+  .introduction-highlighted-text {
+    font-size: 20px;
   }
 }
+
+/* =====================================================
+   900px
+   ===================================================== */
 
 @media (max-width: 900px) {
-  .introduction-outer {
-    .introduction-inner {
-      p {
-        line-height: 1.2;
-        text-align: center;
-        .introduction-text-container {
-          margin-bottom: 6.5px;
-          font-size: 16px;
-
-          .introduction-highlighted-text {
-            &:before {
-              font-size: 16px;
-            }
-          }
-
-          .introduction-static-text {
-            font-size: 16px;
-          }
-        }
-      }
+  .introduction-inner {
+    p {
+      line-height: 1.2;
+      text-align: center;
     }
+  }
+
+  .introduction-text-container {
+    margin-bottom: 6.5px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .introduction-static-text,
+  .introduction-highlighted-text {
+    font-size: 16px;
+    line-height: 1.2;
   }
 }
 
+/* =====================================================
+   600px
+   ===================================================== */
+
 @media (max-width: 600px) {
-  .introduction-outer {
-    .introduction-inner {
-      p {
-        .introduction-text-container {
-          margin-bottom: 6px;
-          font-size: 13px;
+  .introduction-text-container {
+    margin-bottom: 6px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
 
-          .introduction-highlighted-text {
-            &:before {
-              font-size: 13px;
-            }
-          }
-
-          .introduction-static-text {
-            font-size: 13px;
-          }
-        }
-      }
-    }
+  .introduction-static-text,
+  .introduction-highlighted-text {
+    font-size: 13px;
+    line-height: 1.2;
   }
 }

@@ -1,9 +1,36 @@
-import malaysia from "@/assets/malaysia.jpg";
+// =====================================================
+// MALAYSIA - FRIENDS PACKAGE
+// =====================================================
+
+// Hero Image
+import levelOneFriendsImage from "@/assets/levelOneFriendsImage.webp";
+
+// Package Logos
+import levelOneFriendsLogo from "@/assets/levelOneFriendsLogo.webp";
+import levelOneFamilyLogo from "@/assets/levelOneFamilyLogo.webp";
+import levelOneCoupleLogo from "@/assets/levelOneCoupleLogo.webp";
+import levelOneCustomLogo from "@/assets/levelOneCustomLogo.webp";
+
+// Package Images
+import malaysiaFriendsStandard from "@/assets/malaysia1.jpg";
+import malaysiaFriendsDelux from "@/assets/malaysia2.jpg";
+import malaysiaFriendsPremium from "@/assets/malaysia3.jpg";
+
+// Gallery Images
+import malaysiaGallery1 from "@/assets/malaysia1.jpg";
+import malaysiaGallery2 from "@/assets/malaysia2.jpg";
+import malaysiaGallery3 from "@/assets/malaysia3.jpg";
+import malaysiaGallery4 from "@/assets/malaysia4.jpg";
+import malaysiaGallery5 from "@/assets/malaysia5.jpg";
+
+// =====================================================
+// PAGE DATA
+// =====================================================
 
 export const data = {
   title: "Friends Package",
 
-  heroImg: malaysia,
+  heroImg: levelOneFriendsImage,
 
   content: [
     `Malaysia with your friends is the perfect mix of adventure, food, culture, shopping, and unforgettable memories.`,
@@ -19,55 +46,62 @@ export const data = {
   xRange4: ["0%", "-20%"],
   xRangeLast: ["0%", "0%"],
 
-  planTitle: "Friends",
+  // ===================================================
+  // GALLERY
+  // Gallery.jsx uses data.galleryImg.map(...)
+  // ===================================================
 
-  plans: [
+  galleryImg: [
+    malaysiaGallery1,
+    malaysiaGallery2,
+    malaysiaGallery3,
+    malaysiaGallery4,
+    malaysiaGallery5,
+  ],
+
+  // ===================================================
+  // PACKAGES
+  // Packages.jsx uses data.packageData.map(...)
+  // ===================================================
+
+  packageData: [
     {
-      title: "Malaysia Adventure Squad",
+      packageName: "Malaysia Friends Standard",
 
-      data: [
-        `Explore Malaysia with your closest friends through a journey filled with adventure, incredible food, vibrant cities, beautiful landscapes, and unforgettable experiences.`,
+      description:
+        "Explore Malaysia with your closest friends through a journey filled with adventure, incredible food, vibrant cities, beautiful landscapes, and unforgettable experiences.",
 
-        `Discover Kuala Lumpur, explore local attractions, experience Malaysian culture, and enjoy some of the country's best food together.`,
-
-        `From exciting activities to relaxed evenings, every day gives your squad another opportunity to explore, laugh, and create memories.`,
-      ],
+      logo: levelOneFriendsLogo,
 
       url: "/malaysia/friends/standard",
 
-      image: malaysia,
+      leftImg: malaysiaFriendsStandard,
     },
 
     {
-      title: "Malaysia BFF Escape",
+      packageName: "Malaysia Friends Deluxe",
 
-      data: [
-        `Take a memorable escape with your best friends and discover the exciting combination of modern cities, tropical scenery, local culture, and incredible Malaysian cuisine.`,
+      description:
+        "Take a memorable escape with your best friends and discover the exciting combination of modern cities, tropical scenery, local culture, and incredible Malaysian cuisine.",
 
-        `Explore hidden corners, discover new experiences, enjoy beautiful surroundings, and spend quality time together away from everyday life.`,
-
-        `This journey is designed for friends who want comfort, exploration, great food, and unforgettable moments together.`,
-      ],
+      logo: levelOneFriendsLogo,
 
       url: "/malaysia/friends/delux",
 
-      image: malaysia,
+      leftImg: malaysiaFriendsDelux,
     },
 
     {
-      title: "Squad Goals: Malaysia Edition",
+      packageName: "Malaysia Friends Premium",
 
-      data: [
-        `Experience Malaysia at its best with your squad through a combination of adventure, culture, food, sightseeing, and unforgettable experiences.`,
+      description:
+        "Experience Malaysia at its best with your squad through a combination of adventure, culture, food, sightseeing, and unforgettable experiences.",
 
-        `Explore vibrant destinations, discover local flavours, enjoy exciting activities, and make memories that your whole group will remember for years.`,
-
-        `Pack your bags, bring your closest friends, and get ready for an incredible Malaysia adventure.`,
-      ],
+      logo: levelOneFriendsLogo,
 
       url: "/malaysia/friends/premium",
 
-      image: malaysia,
+      leftImg: malaysiaFriendsPremium,
     },
   ],
 };

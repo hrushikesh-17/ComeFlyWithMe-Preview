@@ -6,6 +6,7 @@ import Gallery from "./components/gallery/Gallery";
 import Testimonial from "./components/testimonial/Testimonial";
 import Faq from "./components/faq/Faq";
 import Why from "./components/why/Why";
+import Travelers from "@/components/user/travelers/travelers";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <Why />
       <Faq />
       <Testimonial />
+      <Travelers />
     </section>
   );
 };

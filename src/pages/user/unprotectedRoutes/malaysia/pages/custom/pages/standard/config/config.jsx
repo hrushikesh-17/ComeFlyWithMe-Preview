@@ -2,7 +2,7 @@
 // MALAYSIA - CUSTOM STANDARD
 // =====================================================
 
-import malaysia from "@/assets/malaysia.jpg";
+import customStandard from "@/assets/customStandard.webp";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +11,7 @@ import malaysia from "@/assets/malaysia.jpg";
 export const data = {
   title: "Malaysia Custom Standard",
 
-  heroImg: malaysia,
+  heroImg: customStandard,
 
   content: [
     "Experience Malaysia with a custom journey designed around your interests, filled with beautiful places, delicious food, exciting activities, and unforgettable experiences.",
@@ -28,9 +28,9 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   sliderImg: [
-    malaysia,
-    malaysia,
-    malaysia,
+    customStandard,
+    customStandard,
+    customStandard,
   ],
 
   price: "55,000",
@@ -44,7 +44,7 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: malaysia,
+    image: customStandard,
     color: "DDA15E",
 
     plans: [
@@ -68,7 +68,7 @@ export const activities = [
   {
     day: 1,
     title: "Malaysia City Exploration",
-    image: malaysia,
+    image: customStandard,
     color: "F5CFDE",
 
     plans: [
@@ -93,7 +93,7 @@ export const activities = [
   {
     day: 2,
     title: "Culture and Heritage",
-    image: malaysia,
+    image: customStandard,
     color: "EB7E67",
 
     plans: [
@@ -118,7 +118,7 @@ export const activities = [
   {
     day: 3,
     title: "Adventure Day",
-    image: malaysia,
+    image: customStandard,
     color: "FFE894",
 
     plans: [
@@ -143,7 +143,7 @@ export const activities = [
   {
     day: 4,
     title: "Local Experiences",
-    image: malaysia,
+    image: customStandard,
     color: "83D3FC",
 
     plans: [
@@ -167,7 +167,7 @@ export const activities = [
   {
     day: 5,
     title: "Relaxation and Food",
-    image: malaysia,
+    image: customStandard,
     color: "C7E788",
 
     plans: [
@@ -191,7 +191,7 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: malaysia,
+    image: customStandard,
     color: "F2A7B3",
 
     plans: [

@@ -3,6 +3,11 @@
 // =====================================================
 
 import singapore from "@/assets/singapore.jpg";
+import singapore1 from "@/assets/singapore1.jpg";
+import singapore2 from "@/assets/singapore2.jpg";
+import singapore3 from "@/assets/singapore3.jpg";
+import singapore4 from "@/assets/singapore4.jpg";
+import singapore5 from "@/assets/singapore5.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +16,7 @@ import singapore from "@/assets/singapore.jpg";
 export const data = {
   title: "Singapore Friends Premium",
 
-  heroImg: singapore,
+  heroImg: singapore5,
 
   content: [
     "Experience Singapore with your closest friends through a premium journey filled with modern attractions, delicious food, exciting activities, comfort, and unforgettable experiences.",
@@ -28,9 +33,9 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   sliderImg: [
-    singapore,
-    singapore,
-    singapore,
+    singapore1,
+    singapore2,
+    singapore4,
   ],
 
   price: "75,000",
@@ -44,8 +49,9 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: singapore,
+    image: singapore5,
     color: "DDA15E",
+
     plans: [
       {
         title: "Rest",
@@ -67,8 +73,9 @@ export const activities = [
   {
     day: 1,
     title: "Singapore City Exploration",
-    image: singapore,
+    image: singapore1,
     color: "F5CFDE",
+
     plans: [
       {
         title: "Visit",
@@ -91,8 +98,9 @@ export const activities = [
   {
     day: 2,
     title: "Culture and Heritage",
-    image: singapore,
+    image: singapore2,
     color: "EB7E67",
+
     plans: [
       {
         title: "Visit",
@@ -115,8 +123,9 @@ export const activities = [
   {
     day: 3,
     title: "Premium Adventure Day",
-    image: singapore,
+    image: singapore3,
     color: "FFE894",
+
     plans: [
       {
         title: "Activities",
@@ -137,9 +146,10 @@ export const activities = [
 
   {
     day: 4,
-    title: "Sentosa Experience",
-    image: singapore,
+    title: "Sentosa Premium Experience",
+    image: singapore4,
     color: "83D3FC",
+
     plans: [
       {
         title: "Visit",
@@ -151,7 +161,7 @@ export const activities = [
       {
         title: "Activities",
         data: [
-          "Choose activities according to your interests",
+          "Choose premium activities according to your interests",
           "Spend quality time with your friends",
         ],
       },
@@ -161,8 +171,9 @@ export const activities = [
   {
     day: 5,
     title: "Shopping and Fine Food",
-    image: singapore,
+    image: singapore2,
     color: "C7E788",
+
     plans: [
       {
         title: "Shopping",
@@ -184,8 +195,9 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: singapore,
+    image: singapore5,
     color: "F2A7B3",
+
     plans: [
       {
         title: "Departure",

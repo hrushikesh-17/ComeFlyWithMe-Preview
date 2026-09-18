@@ -1,22 +1,19 @@
-import { useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useMotionTemplate,
 } from "framer-motion";
+
 import "./scrollText.scss";
 
-const ScrollText = ({ content }) => {
+const ScrollText = ({ content = [] }) => {
   return (
     <div className="introduction-outer">
       <div className="introduction-inner">
         <p>
           {content.map((item, index) => (
-            <ContentLine
-              key={index}
-              content={item}
-            />
+            <ContentLine key={index} content={item} />
           ))}
         </p>
       </div>
@@ -25,8 +22,6 @@ const ScrollText = ({ content }) => {
 };
 
 const ContentLine = ({ content }) => {
-  const contentRef = useRef(null);
-
   const { scrollYProgress } = useScroll();
 
   const scrollValue = useTransform(
@@ -40,24 +35,21 @@ const ContentLine = ({ content }) => {
   `;
 
   return (
-    <span
-      className="introduction-text-container"
-      ref={contentRef}
-      style={{
-        position: "relative",
-      }}
-    >
-      <motion.span
-        style={{
-          clipPath: clipPathVal,
-        }}
-        className="introduction-highlighted-text"
-        data-text={content}
-      />
-
+    <span className="introduction-text-container">
+      {/* Base text */}
       <span className="introduction-static-text">
         {content}
       </span>
+
+      {/* Highlighted text */}
+      <motion.span
+        className="introduction-highlighted-text"
+        style={{
+          clipPath: clipPathVal,
+        }}
+      >
+        {content}
+      </motion.span>
     </span>
   );
 };

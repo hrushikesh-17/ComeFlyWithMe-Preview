@@ -1,24 +1,33 @@
 // =====================================================
+// PHILIPPINES - FAMILY STANDARD
+// =====================================================
+
+// =====================================================
 // ASSETS
 // =====================================================
 
 import philippines from "@/assets/philippines.jpg";
+import philippines1 from "@/assets/philippines1.jpg";
+import philippines2 from "@/assets/philippines2.jpg";
+import philippines3 from "@/assets/philippines3.jpg";
+import philippines4 from "@/assets/philippines4.jpg";
+import philippines5 from "@/assets/philippines5.jpg";
 
 // =====================================================
 // PAGE DATA
 // =====================================================
 
 export const data = {
-  title: "Philippines Family Delux",
+  title: "Philippines Family Standard",
 
-  heroImg: philippines,
+  heroImg: philippines2,
 
   content: [
-    `Experience the Philippines with your family through a deluxe journey filled with beautiful beaches, breathtaking landscapes, delicious food, rich culture, exciting activities, and unforgettable experiences.`,
+    `Experience the Philippines with your family through a comfortable journey filled with beautiful beaches, breathtaking landscapes, delicious food, rich culture, exciting activities, and unforgettable experiences.`,
 
     `Explore stunning islands, discover local attractions, enjoy tropical scenery, experience Filipino culture, and spend quality time together as a family.`,
 
-    `This Deluxe package is designed for families who want a more comfortable Philippines holiday with a great combination of sightseeing, adventure, relaxation, culture, food, and family-friendly experiences.`,
+    `This Standard package is designed for families who want a comfortable Philippines holiday with a balanced combination of sightseeing, adventure, relaxation, culture, food, and family-friendly experiences.`,
   ],
 
   xRange1: ["0%", "-27%"],
@@ -27,14 +36,23 @@ export const data = {
   xRange4: ["0%", "-20%"],
   xRangeLast: ["0%", "0%"],
 
+  // ===================================================
+  // SLIDER IMAGES
+  // ===================================================
+
   sliderImg: [
-    philippines,
-    philippines,
-    philippines,
-    philippines,
+    philippines1,
+    philippines2,
+    philippines3,
+    philippines4,
+    philippines5,
   ],
 
-  price: "75,000",
+  // ===================================================
+  // PRICE
+  // ===================================================
+
+  price: "55,000",
 };
 
 // =====================================================
@@ -45,7 +63,7 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: philippines,
+    image: philippines1,
     color: "DDA15E",
 
     plans: [
@@ -53,7 +71,7 @@ export const activities = [
         title: "Rest",
         data: [
           "Relax after your arrival in the Philippines",
-          "Check in to your hotel and settle down comfortably",
+          "Check in to your hotel and settle down",
         ],
       },
       {
@@ -69,7 +87,7 @@ export const activities = [
   {
     day: 1,
     title: "Island Exploration",
-    image: philippines,
+    image: philippines2,
     color: "F5CFDE",
 
     plans: [
@@ -94,7 +112,7 @@ export const activities = [
   {
     day: 2,
     title: "Beach and Nature",
-    image: philippines,
+    image: philippines3,
     color: "EB7E67",
 
     plans: [
@@ -119,7 +137,7 @@ export const activities = [
   {
     day: 3,
     title: "Family Adventure Day",
-    image: philippines,
+    image: philippines4,
     color: "FFE894",
 
     plans: [
@@ -144,7 +162,7 @@ export const activities = [
   {
     day: 4,
     title: "Culture and Food",
-    image: philippines,
+    image: philippines5,
     color: "83D3FC",
 
     plans: [
@@ -195,7 +213,7 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: philippines,
+    image: philippines1,
     color: "F2A7B3",
 
     plans: [

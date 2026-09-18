@@ -2,7 +2,7 @@
 // MALAYSIA - FAMILY DELUX
 // =====================================================
 
-import malaysia from "@/assets/malaysia.jpg";
+import familyDelux from "@/assets/familyDelux.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +11,7 @@ import malaysia from "@/assets/malaysia.jpg";
 export const data = {
   title: "Malaysia Family Delux",
 
-  heroImg: malaysia,
+  heroImg: familyDelux,
 
   content: [
     "Experience Malaysia with your family through a comfortable deluxe journey filled with beautiful places, delicious food, exciting activities, and unforgettable experiences.",
@@ -28,9 +28,9 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   sliderImg: [
-    malaysia,
-    malaysia,
-    malaysia,
+    familyDelux,
+    familyDelux,
+    familyDelux,
   ],
 
   price: "65,000",
@@ -44,7 +44,7 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: malaysia,
+    image: familyDelux,
     color: "DDA15E",
 
     plans: [
@@ -68,7 +68,7 @@ export const activities = [
   {
     day: 1,
     title: "Malaysia City Exploration",
-    image: malaysia,
+    image: familyDelux,
     color: "F5CFDE",
 
     plans: [
@@ -93,7 +93,7 @@ export const activities = [
   {
     day: 2,
     title: "Culture and Heritage",
-    image: malaysia,
+    image: familyDelux,
     color: "EB7E67",
 
     plans: [
@@ -118,7 +118,7 @@ export const activities = [
   {
     day: 3,
     title: "Adventure Day",
-    image: malaysia,
+    image: familyDelux,
     color: "FFE894",
 
     plans: [
@@ -134,7 +134,7 @@ export const activities = [
         title: "Relax",
         data: [
           "Enjoy the scenery",
-          "Spend quality time together",
+          "Spend quality time with family",
         ],
       },
     ],
@@ -143,7 +143,7 @@ export const activities = [
   {
     day: 4,
     title: "Local Experiences",
-    image: malaysia,
+    image: familyDelux,
     color: "83D3FC",
 
     plans: [
@@ -167,7 +167,7 @@ export const activities = [
   {
     day: 5,
     title: "Relaxation and Food",
-    image: malaysia,
+    image: familyDelux,
     color: "C7E788",
 
     plans: [
@@ -191,7 +191,7 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: malaysia,
+    image: familyDelux,
     color: "F2A7B3",
 
     plans: [

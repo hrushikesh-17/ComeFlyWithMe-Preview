@@ -46,6 +46,7 @@ export const activities = [
     title: "Arrival Day",
     image: singapore,
     color: "DDA15E",
+
     plans: [
       {
         title: "Rest",
@@ -69,6 +70,7 @@ export const activities = [
     title: "Singapore City Exploration",
     image: singapore,
     color: "F5CFDE",
+
     plans: [
       {
         title: "Visit",
@@ -93,6 +95,7 @@ export const activities = [
     title: "Culture and Heritage",
     image: singapore,
     color: "EB7E67",
+
     plans: [
       {
         title: "Visit",
@@ -117,6 +120,7 @@ export const activities = [
     title: "Family Adventure Day",
     image: singapore,
     color: "FFE894",
+
     plans: [
       {
         title: "Activities",
@@ -140,6 +144,7 @@ export const activities = [
     title: "Sentosa Family Experience",
     image: singapore,
     color: "83D3FC",
+
     plans: [
       {
         title: "Visit",
@@ -163,6 +168,7 @@ export const activities = [
     title: "Shopping and Relaxation",
     image: singapore,
     color: "C7E788",
+
     plans: [
       {
         title: "Shopping",
@@ -186,6 +192,7 @@ export const activities = [
     title: "Departure Day",
     image: singapore,
     color: "F2A7B3",
+
     plans: [
       {
         title: "Departure",

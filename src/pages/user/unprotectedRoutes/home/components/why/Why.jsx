@@ -5,9 +5,9 @@ import "./why.scss";
 import { Box, LinearProgress } from "@mui/material";
 
 //Assets
-import whyImg1 from "@/assets/whyImg1.webp";
-import whyImg2 from "@/assets/whyImg2.webp";
-import whyImg3 from "@/assets/whyImg3.webp";
+import whyImg1 from "../../../../../../assets/whyImg1.webp";
+import whyImg2 from "../../../../../../assets/whyImg2.webp";
+import whyImg3 from "../../../../../../assets/whyImg3.webp";
 import whyImg4 from "@/assets/whyImg4.webp";
 
 const Why = () => {

@@ -1,13 +1,28 @@
+// =====================================================
+// SINGAPORE - FRIENDS STANDARD
+// =====================================================
+
 import singapore from "@/assets/singapore.jpg";
+import singapore1 from "@/assets/singapore1.jpg";
+import singapore2 from "@/assets/singapore2.jpg";
+import singapore3 from "@/assets/singapore3.jpg";
+import singapore4 from "@/assets/singapore4.jpg";
+import singapore5 from "@/assets/singapore5.jpg";
+
+// =====================================================
+// PAGE DATA
+// =====================================================
 
 export const data = {
   title: "Singapore Friends Standard",
 
-  heroImg: singapore,
+  heroImg: singapore3,
 
   content: [
     "Experience Singapore with your closest friends through a comfortable journey filled with modern attractions, delicious food, exciting activities, and unforgettable experiences.",
+
     "Explore Singapore's vibrant city atmosphere, discover its unique culture, enjoy beautiful landmarks, and create memorable moments together with your friends.",
+
     "This Standard package is designed for friends who want a comfortable Singapore holiday with a balanced combination of sightseeing, adventure, relaxation, culture, food, and fun.",
   ],
 
@@ -17,17 +32,26 @@ export const data = {
   xRange4: ["0%", "-20%"],
   xRangeLast: ["0%", "0%"],
 
-  sliderImg: [singapore, singapore, singapore],
+  sliderImg: [
+    singapore4,
+    singapore5,
+    singapore,
+  ],
 
   price: "55,000",
 };
+
+// =====================================================
+// ACTIVITIES
+// =====================================================
 
 export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: singapore,
+    image: singapore3,
     color: "DDA15E",
+
     plans: [
       {
         title: "Rest",
@@ -49,8 +73,9 @@ export const activities = [
   {
     day: 1,
     title: "Singapore City Exploration",
-    image: singapore,
+    image: singapore4,
     color: "F5CFDE",
+
     plans: [
       {
         title: "Visit",
@@ -60,14 +85,22 @@ export const activities = [
           "See the Merlion",
         ],
       },
+      {
+        title: "Explore",
+        data: [
+          "Enjoy the city atmosphere with your friends",
+          "Take photographs together",
+        ],
+      },
     ],
   },
 
   {
     day: 2,
     title: "Culture and Heritage",
-    image: singapore,
+    image: singapore5,
     color: "EB7E67",
+
     plans: [
       {
         title: "Visit",
@@ -92,6 +125,7 @@ export const activities = [
     title: "Adventure and Attractions",
     image: singapore,
     color: "FFE894",
+
     plans: [
       {
         title: "Activities",
@@ -101,14 +135,21 @@ export const activities = [
           "Take photographs and enjoy the experience",
         ],
       },
+      {
+        title: "Relax",
+        data: [
+          "Enjoy a relaxed evening together",
+        ],
+      },
     ],
   },
 
   {
     day: 4,
     title: "Sentosa Experience",
-    image: singapore,
+    image: singapore1,
     color: "83D3FC",
+
     plans: [
       {
         title: "Visit",
@@ -130,8 +171,9 @@ export const activities = [
   {
     day: 5,
     title: "Shopping and Relaxation",
-    image: singapore,
+    image: singapore2,
     color: "C7E788",
+
     plans: [
       {
         title: "Shopping",
@@ -153,8 +195,9 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: singapore,
+    image: singapore3,
     color: "F2A7B3",
+
     plans: [
       {
         title: "Departure",

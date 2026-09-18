@@ -3,6 +3,11 @@
 // =====================================================
 
 import singapore from "@/assets/singapore.jpg";
+import singapore1 from "@/assets/singapore1.jpg";
+import singapore2 from "@/assets/singapore2.jpg";
+import singapore3 from "@/assets/singapore3.jpg";
+import singapore4 from "@/assets/singapore4.jpg";
+import singapore5 from "@/assets/singapore5.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +16,8 @@ import singapore from "@/assets/singapore.jpg";
 export const data = {
   title: "Singapore Family Premium",
 
-  heroImg: singapore,
+  // Different hero image from Standard and Delux
+  heroImg: singapore2,
 
   content: [
     "Experience Singapore with your family through a premium journey filled with modern attractions, delicious food, exciting activities, comfort, and unforgettable experiences.",
@@ -28,9 +34,9 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   sliderImg: [
-    singapore,
-    singapore,
-    singapore,
+    singapore3,
+    singapore4,
+    singapore5,
   ],
 
   price: "75,000",
@@ -44,8 +50,9 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: singapore,
+    image: singapore2,
     color: "DDA15E",
+
     plans: [
       {
         title: "Rest",
@@ -67,8 +74,9 @@ export const activities = [
   {
     day: 1,
     title: "Singapore City Exploration",
-    image: singapore,
+    image: singapore3,
     color: "F5CFDE",
+
     plans: [
       {
         title: "Visit",
@@ -91,8 +99,9 @@ export const activities = [
   {
     day: 2,
     title: "Culture and Heritage",
-    image: singapore,
+    image: singapore4,
     color: "EB7E67",
+
     plans: [
       {
         title: "Visit",
@@ -115,8 +124,9 @@ export const activities = [
   {
     day: 3,
     title: "Premium Family Adventure",
-    image: singapore,
+    image: singapore5,
     color: "FFE894",
+
     plans: [
       {
         title: "Activities",
@@ -138,8 +148,9 @@ export const activities = [
   {
     day: 4,
     title: "Sentosa Family Experience",
-    image: singapore,
+    image: singapore1,
     color: "83D3FC",
+
     plans: [
       {
         title: "Visit",
@@ -161,8 +172,9 @@ export const activities = [
   {
     day: 5,
     title: "Shopping and Fine Food",
-    image: singapore,
+    image: singapore3,
     color: "C7E788",
+
     plans: [
       {
         title: "Shopping",
@@ -184,8 +196,9 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: singapore,
+    image: singapore2,
     color: "F2A7B3",
+
     plans: [
       {
         title: "Departure",

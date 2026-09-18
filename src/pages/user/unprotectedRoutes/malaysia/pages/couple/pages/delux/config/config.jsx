@@ -2,7 +2,7 @@
 // MALAYSIA - COUPLE DELUX
 // =====================================================
 
-import malaysia from "@/assets/malaysia.jpg";
+import coupleDelux from "@/assets/coupleDelux.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +11,7 @@ import malaysia from "@/assets/malaysia.jpg";
 export const data = {
   title: "Malaysia Couple Delux",
 
-  heroImg: malaysia,
+  heroImg: coupleDelux,
 
   content: [
     "Experience Malaysia together as a couple through a comfortable deluxe journey filled with beautiful places, delicious food, relaxing moments, and unforgettable experiences.",
@@ -28,9 +28,9 @@ export const data = {
   xRangeLast: ["0%", "0%"],
 
   sliderImg: [
-    malaysia,
-    malaysia,
-    malaysia,
+    coupleDelux,
+    coupleDelux,
+    coupleDelux,
   ],
 
   price: "65,000",
@@ -44,7 +44,7 @@ export const activities = [
   {
     day: 0,
     title: "Arrival Day",
-    image: malaysia,
+    image: coupleDelux,
     color: "DDA15E",
 
     plans: [
@@ -68,7 +68,7 @@ export const activities = [
   {
     day: 1,
     title: "Malaysia City Exploration",
-    image: malaysia,
+    image: coupleDelux,
     color: "F5CFDE",
 
     plans: [
@@ -93,7 +93,7 @@ export const activities = [
   {
     day: 2,
     title: "Culture and Heritage",
-    image: malaysia,
+    image: coupleDelux,
     color: "EB7E67",
 
     plans: [
@@ -118,7 +118,7 @@ export const activities = [
   {
     day: 3,
     title: "Scenic Adventure",
-    image: malaysia,
+    image: coupleDelux,
     color: "FFE894",
 
     plans: [
@@ -143,7 +143,7 @@ export const activities = [
   {
     day: 4,
     title: "Local Experiences",
-    image: malaysia,
+    image: coupleDelux,
     color: "83D3FC",
 
     plans: [
@@ -167,7 +167,7 @@ export const activities = [
   {
     day: 5,
     title: "Relaxation and Food",
-    image: malaysia,
+    image: coupleDelux,
     color: "C7E788",
 
     plans: [
@@ -191,7 +191,7 @@ export const activities = [
   {
     day: 6,
     title: "Departure Day",
-    image: malaysia,
+    image: coupleDelux,
     color: "F2A7B3",
 
     plans: [

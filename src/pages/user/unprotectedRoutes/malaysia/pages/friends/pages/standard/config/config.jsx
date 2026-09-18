@@ -2,7 +2,11 @@
 // MALAYSIA - FRIENDS STANDARD
 // =====================================================
 
-import malaysia from "@/assets/malaysia.jpg";
+import malaysiaFriendsStandard from "@/assets/malaysia1.jpg";
+import malaysiaFriendsImage2 from "@/assets/malaysia2.jpg";
+import malaysiaFriendsImage3 from "@/assets/malaysia3.jpg";
+import malaysiaFriendsImage4 from "@/assets/malaysia4.jpg";
+import malaysiaFriendsImage5 from "@/assets/malaysia5.jpg";
 
 // =====================================================
 // PAGE DATA
@@ -11,7 +15,8 @@ import malaysia from "@/assets/malaysia.jpg";
 export const data = {
   title: "Malaysia Friends Standard",
 
-  heroImg: malaysia,
+  // Main hero image
+  heroImg: malaysiaFriendsStandard,
 
   content: [
     `Experience Malaysia with your closest friends through a comfortable journey filled with beautiful places, delicious food, exciting activities, and unforgettable experiences.`,
@@ -27,10 +32,14 @@ export const data = {
   xRange4: ["0%", "-20%"],
   xRangeLast: ["0%", "0%"],
 
+  // ===================================================
+  // SLIDER IMAGES
+  // ===================================================
+
   sliderImg: [
-    malaysia,
-    malaysia,
-    malaysia,
+    malaysiaFriendsImage2,
+    malaysiaFriendsImage3,
+    malaysiaFriendsImage4,
   ],
 
   price: "55,000",
@@ -46,7 +55,7 @@ export const activities = [
 
     title: "Arrival Day",
 
-    image: malaysia,
+    image: malaysiaFriendsStandard,
 
     color: "DDA15E",
 
@@ -76,7 +85,7 @@ export const activities = [
 
     title: "Malaysia City Exploration",
 
-    image: malaysia,
+    image: malaysiaFriendsImage2,
 
     color: "F5CFDE",
 
@@ -107,7 +116,7 @@ export const activities = [
 
     title: "Culture and Heritage",
 
-    image: malaysia,
+    image: malaysiaFriendsImage3,
 
     color: "EB7E67",
 
@@ -138,7 +147,7 @@ export const activities = [
 
     title: "Adventure Day",
 
-    image: malaysia,
+    image: malaysiaFriendsImage4,
 
     color: "FFE894",
 
@@ -169,7 +178,7 @@ export const activities = [
 
     title: "Local Experiences",
 
-    image: malaysia,
+    image: malaysiaFriendsImage5,
 
     color: "83D3FC",
 
@@ -199,7 +208,8 @@ export const activities = [
 
     title: "Relaxation and Food",
 
-    image: malaysia,
+    // Reuse image 2 rather than showing the same hero everywhere
+    image: malaysiaFriendsImage2,
 
     color: "C7E788",
 
@@ -229,7 +239,8 @@ export const activities = [
 
     title: "Departure Day",
 
-    image: malaysia,
+    // Use a different image from the main hero
+    image: malaysiaFriendsImage5,
 
     color: "F2A7B3",
 
