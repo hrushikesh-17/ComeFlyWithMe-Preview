@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./hero.scss";
 import { motion, useScroll, useTransform } from "framer-motion";
-import ScrollText from "./scrollText/ScrollText";
 
 const Hero = ({ data }) => {
   // =====================================================
@@ -140,13 +139,7 @@ const Hero = ({ data }) => {
           x,
           scale,
         }}
-      >
-        <h2>{data?.title || ""}</h2>
-      </motion.div>
-
-      <div className="text">
-        <ScrollText content={data?.content || []} />
-      </div>
+      />
     </section>
   );
 };
