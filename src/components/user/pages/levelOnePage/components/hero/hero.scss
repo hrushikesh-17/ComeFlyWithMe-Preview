@@ -1,23 +1,33 @@
 @import "@/index.scss";
+
 .levelOneHero {
   width: 100%;
   height: 120vh;
   height: 120dvh;
-  transition: all 0.8s ease-out;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   position: relative;
+  overflow: hidden;
+  transition: all 0.8s ease-out;
+  background-color: #111;
 
-  &::before {
-    content: "";
+  .levelOneHeroImage {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .levelOneHeroOverlay {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1;
+    pointer-events: none;
   }
 
   .container {
@@ -35,6 +45,70 @@
     }
   }
 
+  .heroDestinationContent {
+    width: min(900px, 90%);
+    text-align: center;
+    color: $text-orange;
+  }
+
+  .heroDestinationTitle {
+    margin: 0 0 45px;
+    font-family: "Italiana", sans-serif;
+    font-size: 82px;
+    font-weight: 100;
+    letter-spacing: 5px;
+    line-height: 1.1;
+    color: $text-orange;
+    text-shadow: 2px 3px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .heroLocations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroLocations h2 {
+    margin: 0 0 28px;
+    font-family: "Italiana", sans-serif;
+    font-size: 38px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    line-height: 1.2;
+    color: $text-orange;
+    text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .heroLocationsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 18px;
+    row-gap: 14px;
+    max-width: 850px;
+  }
+
+  .heroLocationItem {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .heroLocationItem span:first-child {
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    color: $text-orange;
+    text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+  }
+
+  .heroLocationDot {
+    font-size: 22px;
+    color: $text-orange;
+    opacity: 0.8;
+  }
+
   .text {
     margin-left: 170px;
     margin-top: -100px;
@@ -42,6 +116,10 @@
     z-index: 2;
   }
 }
+
+/* =====================================================
+   1700px
+   ===================================================== */
 
 @media (max-width: 1700px) {
   .levelOneHero {
@@ -51,6 +129,18 @@
       }
     }
 
+    .heroDestinationTitle {
+      font-size: 76px;
+    }
+
+    .heroLocations h2 {
+      font-size: 36px;
+    }
+
+    .heroLocationItem span:first-child {
+      font-size: 24px;
+    }
+
     .text {
       margin-left: 160px;
       margin-top: -75px;
@@ -58,9 +148,75 @@
   }
 }
 
+/* =====================================================
+   1500px
+   ===================================================== */
+
+@media (max-width: 1500px) {
+  .levelOneHero {
+    .heroDestinationTitle {
+      font-size: 70px;
+      margin-bottom: 40px;
+    }
+
+    .heroLocations h2 {
+      font-size: 34px;
+      margin-bottom: 25px;
+    }
+
+    .heroLocationItem span:first-child {
+      font-size: 22px;
+    }
+  }
+}
+
+/* =====================================================
+   1200px
+   ===================================================== */
+
+@media (max-width: 1200px) {
+  .levelOneHero {
+    .heroDestinationContent {
+      width: min(850px, 90%);
+    }
+
+    .heroDestinationTitle {
+      font-size: 62px;
+      margin-bottom: 35px;
+    }
+
+    .heroLocations h2 {
+      font-size: 32px;
+      margin-bottom: 22px;
+    }
+
+    .heroLocationsList {
+      column-gap: 15px;
+      row-gap: 12px;
+    }
+
+    .heroLocationItem {
+      gap: 15px;
+    }
+
+    .heroLocationItem span:first-child {
+      font-size: 21px;
+    }
+
+    .heroLocationDot {
+      font-size: 20px;
+    }
+  }
+}
+
+/* =====================================================
+   900px
+   ===================================================== */
+
 @media (max-width: 900px) {
   .levelOneHero {
     padding: 30px;
+
     .container {
       h2 {
         font-size: 60px;
@@ -68,20 +224,89 @@
       }
     }
 
+    .heroDestinationTitle {
+      font-size: 52px;
+      letter-spacing: 4px;
+      margin-bottom: 30px;
+    }
+
+    .heroLocations h2 {
+      font-size: 29px;
+      margin-bottom: 20px;
+    }
+
+    .heroLocationsList {
+      max-width: 700px;
+      column-gap: 12px;
+      row-gap: 10px;
+    }
+
+    .heroLocationItem {
+      gap: 12px;
+    }
+
+    .heroLocationItem span:first-child {
+      font-size: 19px;
+    }
+
+    .heroLocationDot {
+      font-size: 18px;
+    }
+
     .text {
-      margin-left: 0px;
+      margin-left: 0;
       margin-top: -65px;
     }
   }
 }
 
+/* =====================================================
+   600px
+   ===================================================== */
+
 @media (max-width: 600px) {
   .levelOneHero {
     padding: 30px;
+
     .container {
       h2 {
         font-size: 40px;
       }
+    }
+
+    .heroDestinationContent {
+      width: 100%;
+    }
+
+    .heroDestinationTitle {
+      font-size: 40px;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+    }
+
+    .heroLocations h2 {
+      font-size: 25px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .heroLocationsList {
+      column-gap: 8px;
+      row-gap: 8px;
+      max-width: 100%;
+    }
+
+    .heroLocationItem {
+      gap: 8px;
+    }
+
+    .heroLocationItem span:first-child {
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .heroLocationDot {
+      font-size: 15px;
     }
 
     .text {

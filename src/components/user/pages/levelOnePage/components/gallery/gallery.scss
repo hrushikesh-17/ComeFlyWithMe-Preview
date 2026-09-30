@@ -1,5 +1,3 @@
-@import "@/index.scss";
-
 .level-one-gallery {
   display: flex;
   justify-content: center;
@@ -9,248 +7,397 @@
 
   h2 {
     text-align: center;
-    color: $text-orange;
+    color: #fefae0;
     font-size: 60px;
   }
 }
 
 .level-one-gallery-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 70px 30px;
+  background-color: #151515;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.level-one-gallery-images {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  background-color: $black;
-  overflow: hidden;
-
-  .image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    flex-shrink: 0;
-    cursor: pointer;
-
-    img {
-      transition: transform 0.5s ease;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform-origin: center;
-      border-radius: 5px;
-    }
-
-    &:nth-child(1) img,
-    &:nth-child(5) img {
-      width: 150px;
-      height: 250px;
-    }
-
-    &:nth-child(2) img,
-    &:nth-child(4) img {
-      width: 300px;
-      height: 400px;
-    }
-
-    &:nth-child(3) img {
-      width: 420px;
-      height: 600px;
-    }
-  }
 }
+
+.level-one-gallery-images .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.level-one-gallery-images .image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+
+  transform: none;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.level-one-gallery-images .image:hover img {
+  transform: scale(1.02);
+}
+
+/* =====================================================
+   5 IMAGE GALLERY LAYOUT
+===================================================== */
+
+.level-one-gallery-images .image:nth-child(1) img,
+.level-one-gallery-images .image:nth-child(5) img {
+  width: 150px;
+  height: 250px;
+}
+
+.level-one-gallery-images .image:nth-child(2) img,
+.level-one-gallery-images .image:nth-child(4) img {
+  width: 300px;
+  height: 400px;
+}
+
+.level-one-gallery-images .image:nth-child(3) img {
+  width: 420px;
+  height: 600px;
+}
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
 
 .text-overlay {
   position: absolute;
-  bottom: 20px;
-  left: 50px;
-  width: calc(100% - 40px);
-  color: white;
-  opacity: 0;
-  p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: $white;
-    line-height: 30px;
-  }
+  left: 50%;
+  bottom: 25px;
+  transform: translateX(-50%);
+
+  width: min(1000px, calc(100% - 80px));
+
+  z-index: 5;
+  pointer-events: none;
 }
+
+.text-overlay p {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+}
+
+/* =====================================================
+   IMAGE MODAL
+===================================================== */
 
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
+
+  padding: 30px;
+
+  background-color: rgba(0, 0, 0, 0.92);
+
+  z-index: 9999;
+
+  cursor: pointer;
 }
 
+/* =====================================================
+   MODAL IMAGE
+===================================================== */
+
 .modal-content {
-  max-width: 90%;
-  max-height: 90%;
+  position: relative;
+
+  max-width: 90vw;
+  max-height: 90vh;
+
+  cursor: default;
+
+  z-index: 10000;
 }
 
 .modal-content img {
-  height: 400px;
   display: block;
+
+  max-width: 90vw;
+  max-height: 85vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
+  border-radius: 5px;
 }
+
+/* =====================================================
+   MODAL CLOSE BUTTON
+===================================================== */
+
+.modal-close {
+  position: absolute;
+
+  top: 25px;
+  right: 30px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  margin: 0;
+
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 99999;
+  pointer-events: auto;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 1);
+  transform: scale(1.08);
+}
+
+/* =====================================================
+   1500px
+===================================================== */
 
 @media (max-width: 1500px) {
-  .level-one-gallery {
-    margin: 40px 0 15px 0;
-
-    h2 {
-      font-size: 45px;
-    }
-  }
-
   .level-one-gallery-container {
+    padding: 60px 25px;
+  }
+
+  .level-one-gallery-images {
     gap: 30px;
-
-    .image {
-      &:nth-child(1) img,
-      &:nth-child(5) img {
-        width: 130px;
-        height: 230px;
-      }
-
-      &:nth-child(2) img,
-      &:nth-child(4) img {
-        width: 280px;
-        height: 380px;
-      }
-
-      &:nth-child(3) img {
-        width: 400px;
-        height: 580px;
-      }
-    }
   }
 
-  .text-overlay {
-    bottom: 18px;
-    left: 45px;
-
-    p {
-      font-size: 17px;
-      margin-bottom: 18px;
-      line-height: 28px;
-    }
+  .level-one-gallery-images .image:nth-child(1) img,
+  .level-one-gallery-images .image:nth-child(5) img {
+    width: 130px;
+    height: 230px;
   }
 
-  .modal-content img {
+  .level-one-gallery-images .image:nth-child(2) img,
+  .level-one-gallery-images .image:nth-child(4) img {
+    width: 280px;
     height: 380px;
   }
+
+  .level-one-gallery-images .image:nth-child(3) img {
+    width: 400px;
+    height: 580px;
+  }
+
+  .text-overlay p {
+    font-size: 17px;
+    line-height: 28px;
+  }
 }
+
+/* =====================================================
+   1200px
+===================================================== */
 
 @media (max-width: 1200px) {
-  .level-one-gallery {
-    margin: 30px 0 13px 0;
-
-    h2 {
-      font-size: 40px;
-    }
+  .level-one-gallery-container {
+    padding: 50px 20px;
   }
 
-  .level-one-gallery-container {
-    gap: 28px;
+  .level-one-gallery-images {
+    gap: 25px;
+  }
 
-    .image {
-      &:nth-child(1) img,
-      &:nth-child(5) img {
-        width: 120px;
-        height: 220px;
-      }
+  .level-one-gallery-images .image:nth-child(1) img,
+  .level-one-gallery-images .image:nth-child(5) img {
+    width: 120px;
+    height: 220px;
+  }
 
-      &:nth-child(2) img,
-      &:nth-child(4) img {
-        width: 260px;
-        height: 360px;
-      }
+  .level-one-gallery-images .image:nth-child(2) img,
+  .level-one-gallery-images .image:nth-child(4) img {
+    width: 250px;
+    height: 350px;
+  }
 
-      &:nth-child(3) img {
-        width: 380px;
-        height: 560px;
-      }
-    }
+  .level-one-gallery-images .image:nth-child(3) img {
+    width: 360px;
+    height: 540px;
   }
 
   .text-overlay {
-    bottom: 16px;
-    left: 40px;
-
-    p {
-      font-size: 16px;
-      margin-bottom: 16px;
-      line-height: 26px;
-    }
+    width: calc(100% - 60px);
   }
 
-  .modal-content img {
-    height: 360px;
+  .text-overlay p {
+    font-size: 16px;
+    line-height: 26px;
   }
 }
+
+/* =====================================================
+   900px
+===================================================== */
 
 @media (max-width: 900px) {
-  .level-one-gallery {
-    margin: 28px 0 12px 0;
-
-    h2 {
-      font-size: 34px;
-    }
+  .level-one-gallery-container {
+    min-height: auto;
+    padding: 70px 20px;
   }
 
-  .level-one-gallery-container {
-    gap: 24px;
-    height: 100vh;
+  .level-one-gallery-images {
+    gap: 18px;
+  }
 
-    .image {
-      &:nth-child(1) img,
-      &:nth-child(5) img {
-        width: 110px;
-        height: 210px;
-      }
+  .level-one-gallery-images .image:nth-child(1) img,
+  .level-one-gallery-images .image:nth-child(5) img {
+    width: 90px;
+    height: 180px;
+  }
 
-      &:nth-child(2) img,
-      &:nth-child(4) img {
-        width: 240px;
-        height: 340px;
-      }
+  .level-one-gallery-images .image:nth-child(2) img,
+  .level-one-gallery-images .image:nth-child(4) img {
+    width: 190px;
+    height: 300px;
+  }
 
-      &:nth-child(3) img {
-        width: 340px;
-        height: 540px;
-      }
-    }
+  .level-one-gallery-images .image:nth-child(3) img {
+    width: 290px;
+    height: 450px;
   }
 
   .text-overlay {
-    bottom: 15px;
-    left: 38px;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
 
-    p {
-      font-size: 15px;
-      margin-bottom: 15px;
-      line-height: 24px;
-    }
+    width: 100%;
+    margin-top: 40px;
   }
 
-  .modal-content img {
-    height: 340px;
+  .text-overlay p {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
   }
 }
 
+/* =====================================================
+   600px
+===================================================== */
+
 @media (max-width: 600px) {
-  .level-one-gallery {
-    display: none;
+  .level-one-gallery-container {
+    min-height: auto;
+    padding: 60px 20px;
   }
 
-  .level-one-gallery-container {
-    display: none;
-    height: 0;
+  .level-one-gallery-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .level-one-gallery-images .image:nth-child(1) img,
+  .level-one-gallery-images .image:nth-child(5) img,
+  .level-one-gallery-images .image:nth-child(2) img,
+  .level-one-gallery-images .image:nth-child(4) img,
+  .level-one-gallery-images .image:nth-child(3) img {
+    width: 100%;
+    height: 240px;
+  }
+
+  .level-one-gallery-images .image:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .level-one-gallery-images .image:nth-child(3) img {
+    height: 360px;
+  }
+
+  .text-overlay {
+    margin-top: 30px;
+  }
+
+  .text-overlay p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* ===================================================
+     MOBILE MODAL
+  =================================================== */
+
+  .modal {
+    padding: 20px;
+  }
+
+  .modal-content {
+    max-width: 94vw;
+    max-height: 85vh;
+  }
+
+  .modal-content img {
+    max-width: 94vw;
+    max-height: 80vh;
+  }
+
+  .modal-close {
+    top: 15px;
+    right: 15px;
+
+    width: 44px;
+    height: 44px;
+
+    font-size: 27px;
   }
 }

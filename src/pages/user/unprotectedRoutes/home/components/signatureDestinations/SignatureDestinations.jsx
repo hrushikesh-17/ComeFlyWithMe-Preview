@@ -8,6 +8,8 @@ import vietnamImg from "@/assets/vietnam.jpg";
 import malaysiaImg from "@/assets/malaysia.jpg";
 import singaporeImg from "@/assets/singapore.jpg";
 import philippinesImg from "@/assets/philippines.jpg";
+import japanImg from "@/assets/japan(1).jpg";
+import southKoreaImg from "@/assets/seoul(1).jpg";
 
 const destinations = [
   {
@@ -46,6 +48,18 @@ const destinations = [
     image: philippinesImg,
     link: "/philippines",
   },
+  {
+    title: "Japan",
+    subtitle: "Tradition • Cities • Scenic Beauty",
+    image: japanImg,
+    link: "/japan",
+  },
+  {
+    title: "South Korea",
+    subtitle: "K-Culture • History • Modern Seoul",
+    image: southKoreaImg,
+    link: "/south-korea",
+  },
 ];
 
 const SignatureDestinations = () => {
@@ -58,33 +72,21 @@ const SignatureDestinations = () => {
   return (
     <section className="signature-destinations">
       <div className="container">
+        <p className="section-tag">SIGNATURE JOURNEYS</p>
 
-        <p className="section-tag">
-          SIGNATURE JOURNEYS
-        </p>
-
-        <h2>
-          Explore Our Signature Destinations
-        </h2>
+        <h2>Explore Our Signature Destinations</h2>
 
         <p className="section-description">
-          Curated holidays across Southeast Asia,
-          designed with luxury, comfort and unforgettable
-          experiences in mind.
+          Curated holidays across Asia, designed with luxury, comfort and
+          unforgettable experiences in mind.
         </p>
 
         <div className="destination-grid">
-
           {destinations.map((destination) => (
-            <div
-              className="destination-card"
-              key={destination.title}
-            >
+            <div className="destination-card" key={destination.title}>
               <div
                 className="destination-image"
-                onClick={() =>
-                  handleDestinationClick(destination)
-                }
+                onClick={() => handleDestinationClick(destination)}
               >
                 <img
                   src={destination.image}
@@ -97,15 +99,11 @@ const SignatureDestinations = () => {
               </div>
 
               <div className="destination-content">
-                <p>
-                  {destination.subtitle}
-                </p>
+                <p>{destination.subtitle}</p>
 
                 <button
                   type="button"
-                  onClick={() =>
-                    handleDestinationClick(destination)
-                  }
+                  onClick={() => handleDestinationClick(destination)}
                 >
                   Explore Journey →
                 </button>
@@ -113,24 +111,17 @@ const SignatureDestinations = () => {
             </div>
           ))}
 
-          {/* BESPOKE JOURNEY */}
-
           <div className="destination-card custom-card">
+            <div className="custom-icon">✦</div>
 
-            <div className="custom-icon">
-              ✦
-            </div>
-
-            <h3>
-              Bespoke Journeys
-            </h3>
+            <h3>Bespoke Journeys</h3>
 
             <p>
               Tell us where you dream of travelling.
               <br />
               <br />
-              Every itinerary is personally crafted around
-              your destination, travel style and budget.
+              Every itinerary is personally crafted around your destination,
+              travel style and budget.
             </p>
 
             <button
@@ -139,9 +130,7 @@ const SignatureDestinations = () => {
             >
               Design My Journey →
             </button>
-
           </div>
-
         </div>
       </div>
     </section>

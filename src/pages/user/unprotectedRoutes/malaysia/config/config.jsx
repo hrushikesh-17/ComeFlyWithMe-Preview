@@ -7,22 +7,18 @@ import img3 from "@/assets/malaysia3.jpg";
 import img4 from "@/assets/malaysia4.jpg";
 import img5 from "@/assets/malaysia5.jpg";
 
-// Package Logos
-import levelOneFriendsLogo from "@/assets/levelOneFriendsLogo.webp";
-import levelOneFamilyLogo from "@/assets/levelOneFamilyLogo.webp";
-import levelOneCoupleLogo from "@/assets/levelOneCoupleLogo.webp";
-import levelOneCustomLogo from "@/assets/levelOneCustomLogo.webp";
-
-// Package Images
-import levelOneFriendsImage from "@/assets/levelOneFriendsImage.webp";
-import levelOneFamilyImage from "@/assets/levelOneFamilyImage.jpg";
-import levelOneCoupleImage from "@/assets/levelOneCoupleImage.jpg";
-import levelOneCustomImage from "@/assets/levelOneCustomImage.webp";
-
 export const data = {
-  title: "Beautiful Malaysia",
+  title: "Malaysia",
 
-  heroImg,
+  heroImg: heroImg,
+
+  locations: [
+    "Kuala Lumpur",
+    "Langkawi",
+    "Penang",
+    "Melaka",
+    "Kota Kinabalu",
+  ],
 
   content: [
     `Malaysia is a beautiful blend of modern cities, tropical islands, rich culture, incredible food, and unforgettable experiences.`,
@@ -42,43 +38,5 @@ export const data = {
     img3,
     img4,
     img5,
-  ],
-
-  packageData: [
-    {
-      packageName: "Friends",
-      description:
-        "Explore Malaysia with your friends through a journey filled with adventure, great food, vibrant cities, beautiful islands, and unforgettable memories.",
-      logo: levelOneFriendsLogo,
-      url: "/malaysia/friends",
-      leftImg: levelOneFriendsImage,
-    },
-
-    {
-      packageName: "Family",
-      description:
-        "Enjoy a comfortable Malaysian family holiday with beautiful destinations, exciting experiences, delicious food, and plenty of memorable moments together.",
-      logo: levelOneFamilyLogo,
-      url: "/malaysia/family",
-      leftImg: levelOneFamilyImage,
-    },
-
-    {
-      packageName: "Couples",
-      description:
-        "Discover Malaysia together through beautiful scenery, romantic experiences, incredible food, peaceful escapes, and unforgettable moments.",
-      logo: levelOneCoupleLogo,
-      url: "/malaysia/couple",
-      leftImg: levelOneCoupleImage,
-    },
-
-    {
-      packageName: "Custom",
-      description:
-        "Create your own Malaysia journey around your interests, travel style, preferred experiences, and budget.",
-      logo: levelOneCustomLogo,
-      url: "/malaysia/custom",
-      leftImg: levelOneCustomImage,
-    },
   ],
 };

@@ -3,32 +3,19 @@ import "./hero.scss";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = ({ data }) => {
-  // =====================================================
-  // WINDOW SCROLL
-  // =====================================================
-
   const { scrollYProgress } = useScroll();
 
-  // =====================================================
-  // GET IMAGE URL SAFELY
-  // =====================================================
-
   const getImageUrl = (image) => {
-    if (!image) {
-      return "";
-    }
+    if (!image) return "";
 
-    // Normal Vite image import
     if (typeof image === "string") {
       return image;
     }
 
-    // Handle module-style image
     if (image.default) {
       return image.default;
     }
 
-    // Handle object containing src
     if (image.src) {
       return image.src;
     }
@@ -37,55 +24,59 @@ const Hero = ({ data }) => {
   };
 
   const heroImage = getImageUrl(data?.heroImg);
+  const locations = data?.locations || [];
 
-  // =====================================================
-  // TRANSFORM VALUES
-  // =====================================================
+  const getTransformValues = () => {
+    const width = window.innerWidth;
 
-  const [transformValues, setTransformValues] = useState({
-    yRange: ["0%", "40%"],
-    xRange: ["0%", "-30%"],
-  });
+    if (width > 1700) {
+      return {
+        yRange: ["0%", "32%"],
+        xRange: data?.xRange1 || ["0%", "-27%"],
+      };
+    }
 
-  // =====================================================
-  // RESPONSIVE TRANSFORM VALUES
-  // =====================================================
+    if (width > 1500) {
+      return {
+        yRange: ["0%", "30%"],
+        xRange: data?.xRange2 || ["0%", "-25%"],
+      };
+    }
+
+    if (width > 1400) {
+      return {
+        yRange: ["0%", "32%"],
+        xRange: data?.xRange3 || ["0%", "-23%"],
+      };
+    }
+
+    if (width > 1200) {
+      return {
+        yRange: ["0%", "32%"],
+        xRange: data?.xRange4 || ["0%", "-20%"],
+      };
+    }
+
+    if (width > 600) {
+      return {
+        yRange: ["0%", "30%"],
+        xRange: data?.xRangeLast || ["0%", "0%"],
+      };
+    }
+
+    return {
+      yRange: ["0%", "35%"],
+      xRange: data?.xRangeLast || ["0%", "0%"],
+    };
+  };
+
+  const [transformValues, setTransformValues] = useState(() =>
+    getTransformValues()
+  );
 
   useEffect(() => {
     const updateTransformValues = () => {
-      const width = window.innerWidth;
-
-      if (width > 1700) {
-        setTransformValues({
-          yRange: ["0%", "32%"],
-          xRange: data?.xRange1 || ["0%", "-27%"],
-        });
-      } else if (width > 1500 && width < 1700) {
-        setTransformValues({
-          yRange: ["0%", "30%"],
-          xRange: data?.xRange2 || ["0%", "-25%"],
-        });
-      } else if (width > 1400 && width < 1500) {
-        setTransformValues({
-          yRange: ["0%", "32%"],
-          xRange: data?.xRange3 || ["0%", "-23%"],
-        });
-      } else if (width > 1200 && width < 1400) {
-        setTransformValues({
-          yRange: ["0%", "32%"],
-          xRange: data?.xRange4 || ["0%", "-20%"],
-        });
-      } else if (width > 600 && width < 1200) {
-        setTransformValues({
-          yRange: ["0%", "30%"],
-          xRange: data?.xRangeLast || ["0%", "0%"],
-        });
-      } else if (width > 300 && width < 600) {
-        setTransformValues({
-          yRange: ["0%", "35%"],
-          xRange: data?.xRangeLast || ["0%", "0%"],
-        });
-      }
+      setTransformValues(getTransformValues());
     };
 
     updateTransformValues();
@@ -96,10 +87,6 @@ const Hero = ({ data }) => {
       window.removeEventListener("resize", updateTransformValues);
     };
   }, [data]);
-
-  // =====================================================
-  // SCROLL ANIMATIONS
-  // =====================================================
 
   const y = useTransform(
     scrollYProgress,
@@ -119,27 +106,54 @@ const Hero = ({ data }) => {
     ["100%", "80%"]
   );
 
-  // =====================================================
-  // RENDER
-  // =====================================================
-
   return (
-    <section
-      className="levelOneHero"
-      style={{
-        backgroundImage: heroImage
-          ? `url("${heroImage}")`
-          : "none",
-      }}
-    >
+    <section className="levelOneHero">
+      {heroImage && (
+        <img
+          className="levelOneHeroImage"
+          src={heroImage}
+          alt={data?.title || "Travel destination"}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+
+      <div className="levelOneHeroOverlay" />
+
       <motion.div
         className="container"
-        style={{
-          y,
-          x,
-          scale,
-        }}
-      />
+        style={{ y, x, scale }}
+      >
+        <div className="heroDestinationContent">
+          {data?.title && (
+            <h1 className="heroDestinationTitle">
+              {data.title}
+            </h1>
+          )}
+
+          {locations.length > 0 && (
+            <div className="heroLocations">
+              <h2>Places We Offer</h2>
+
+              <div className="heroLocationsList">
+                {locations.map((location, index) => (
+                  <div
+                    className="heroLocationItem"
+                    key={`${location}-${index}`}
+                  >
+                    <span>{location}</span>
+
+                    {index < locations.length - 1 && (
+                      <span className="heroLocationDot">•</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </motion.div>
     </section>
   );
 };

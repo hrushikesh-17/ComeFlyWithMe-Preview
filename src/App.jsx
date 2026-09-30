@@ -1,19 +1,4 @@
-import { Suspense } from "react";
-
-// =====================================================
-// PACKAGE PAGE
-// =====================================================
-
-import PackagePage from "./pages/user/unprotectedRoutes/packagepage/PackagePage";
-
-// =====================================================
-// PACKAGE CONFIG TEST
-// =====================================================
-
-import { runPackageConfigTest } from "./utils/testPackageConfigs";
-
-// Run package configuration test once when App loads
-runPackageConfigTest();
+import { lazy, Suspense } from "react";
 
 // =====================================================
 // ROUTING
@@ -157,6 +142,38 @@ import {
 } from "./pageConfig/UserPageConfig";
 
 // =====================================================
+// JAPAN
+// =====================================================
+
+const Japan = lazy(() =>
+  import("./pages/user/unprotectedRoutes/japan/Japan")
+);
+
+// =====================================================
+// SOUTH KOREA
+// =====================================================
+
+const SouthKorea = lazy(() =>
+  import("./pages/user/unprotectedRoutes/south korea/South Korea")
+);
+
+const Friends = lazy(() =>
+  import("./pages/user/unprotectedRoutes/south korea/pages/friends/Friends")
+);
+
+const Family = lazy(() =>
+  import("./pages/user/unprotectedRoutes/south korea/pages/family/Family")
+);
+
+const Couple = lazy(() =>
+  import("./pages/user/unprotectedRoutes/south korea/pages/couple/Couple")
+);
+
+const Custom = lazy(() =>
+  import("./pages/user/unprotectedRoutes/south korea/pages/custom/Custom")
+);
+
+// =====================================================
 // ADMIN PAGE CONFIG
 // =====================================================
 
@@ -205,148 +222,6 @@ const userAuthRoutesData = [
 ];
 
 // =====================================================
-// PACKAGE ROUTE HELPER
-// =====================================================
-//
-// Every package URL is handled by PackagePage.
-//
-// Example:
-//
-// /bali/friends/standard
-// /bali/friends/delux
-// /bali/friends/premium
-//
-// /vietnam/family/standard
-// /singapore/couple/premium
-// /philippines/custom/delux
-//
-// PackagePage reads the URL and finds the matching
-// config/config.js file automatically.
-// =====================================================
-
-const packageRoutes = [
-  // ===================================================
-  // BALI
-  // ===================================================
-
-  "/bali/friends/standard",
-  "/bali/friends/delux",
-  "/bali/friends/premium",
-
-  "/bali/family/standard",
-  "/bali/family/delux",
-  "/bali/family/premium",
-
-  "/bali/couple/standard",
-  "/bali/couple/delux",
-  "/bali/couple/premium",
-
-  "/bali/custom/standard",
-  "/bali/custom/delux",
-  "/bali/custom/premium",
-
-  // ===================================================
-  // PHUKET
-  // ===================================================
-
-  "/phuket/friends/standard",
-  "/phuket/friends/delux",
-  "/phuket/friends/premium",
-
-  "/phuket/family/standard",
-  "/phuket/family/delux",
-  "/phuket/family/premium",
-
-  "/phuket/couple/standard",
-  "/phuket/couple/delux",
-  "/phuket/couple/premium",
-
-  "/phuket/custom/standard",
-  "/phuket/custom/delux",
-  "/phuket/custom/premium",
-
-  // ===================================================
-  // VIETNAM
-  // ===================================================
-
-  "/vietnam/friends/standard",
-  "/vietnam/friends/delux",
-  "/vietnam/friends/premium",
-
-  "/vietnam/family/standard",
-  "/vietnam/family/delux",
-  "/vietnam/family/premium",
-
-  "/vietnam/couple/standard",
-  "/vietnam/couple/delux",
-  "/vietnam/couple/premium",
-
-  "/vietnam/custom/standard",
-  "/vietnam/custom/delux",
-  "/vietnam/custom/premium",
-
-  // ===================================================
-  // MALAYSIA
-  // ===================================================
-
-  "/malaysia/friends/standard",
-  "/malaysia/friends/delux",
-  "/malaysia/friends/premium",
-
-  "/malaysia/family/standard",
-  "/malaysia/family/delux",
-  "/malaysia/family/premium",
-
-  "/malaysia/couple/standard",
-  "/malaysia/couple/delux",
-  "/malaysia/couple/premium",
-
-  "/malaysia/custom/standard",
-  "/malaysia/custom/delux",
-  "/malaysia/custom/premium",
-
-  // ===================================================
-  // SINGAPORE
-  // ===================================================
-
-  "/singapore/friends/standard",
-  "/singapore/friends/delux",
-  "/singapore/friends/premium",
-
-  "/singapore/family/standard",
-  "/singapore/family/delux",
-  "/singapore/family/premium",
-
-  "/singapore/couple/standard",
-  "/singapore/couple/delux",
-  "/singapore/couple/premium",
-
-  "/singapore/custom/standard",
-  "/singapore/custom/delux",
-  "/singapore/custom/premium",
-
-  // ===================================================
-  // PHILIPPINES
-  // ===================================================
-
-  "/philippines/friends/standard",
-  "/philippines/friends/delux",
-  "/philippines/friends/premium",
-
-  "/philippines/family/standard",
-  "/philippines/family/delux",
-  "/philippines/family/premium",
-
-  "/philippines/couple/standard",
-  "/philippines/couple/delux",
-  "/philippines/couple/premium",
-
-  "/philippines/custom/standard",
-  "/philippines/custom/delux",
-  "/philippines/custom/premium",
-];
-
-// =====================================================
 // USER UNPROTECTED ROUTES
 // =====================================================
 
@@ -368,6 +243,44 @@ const userUnprotectedRoutesData = [
   {
     path: "/about-us",
     element: <UserAbout />,
+  },
+
+  // ===================================================
+  // JAPAN
+  // ===================================================
+
+  {
+    path: "/japan",
+    element: <Japan />,
+  },
+
+  // ===================================================
+  // SOUTH KOREA
+  // ===================================================
+
+  {
+    path: "/south-korea",
+    element: <SouthKorea />,
+  },
+
+  {
+    path: "/south-korea/friends",
+    element: <Friends />,
+  },
+
+  {
+    path: "/south-korea/family",
+    element: <Family />,
+  },
+
+  {
+    path: "/south-korea/couple",
+    element: <Couple />,
+  },
+
+  {
+    path: "/south-korea/custom",
+    element: <Custom />,
   },
 
   // ===================================================
@@ -688,24 +601,6 @@ const App = () => {
               <Suspense fallback={<Loader />}>
                 <UserRouteLayout>
                   {route.element}
-                </UserRouteLayout>
-              </Suspense>
-            }
-          />
-        ))}
-
-        {/* ================================================= */}
-        {/* PACKAGE ROUTES */}
-        {/* ================================================= */}
-
-        {packageRoutes.map((path) => (
-          <Route
-            key={path}
-            path={path}
-            element={
-              <Suspense fallback={<Loader />}>
-                <UserRouteLayout>
-                  <PackagePage />
                 </UserRouteLayout>
               </Suspense>
             }
