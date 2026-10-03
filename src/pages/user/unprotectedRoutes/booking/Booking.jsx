@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "@/assets/logo.webp";
 
+const TRIPMATE_API_URL =
+  import.meta.env.VITE_TRIPMATE_API_URL ||
+  "http://localhost:4000";
+
 const s = {
   page: {
     maxWidth: 900,
@@ -78,6 +82,8 @@ const s = {
     outline: "none",
     fontFamily: "'Cygre Light', sans-serif",
     boxSizing: "border-box",
+    transition:
+      "border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease",
   },
 
   divider: {
@@ -118,6 +124,7 @@ const s = {
     cursor: "pointer",
     fontFamily: "'Cygre Light', sans-serif",
     letterSpacing: 1,
+    transition: "all 0.25s ease",
   },
 
   btnOutline: {
@@ -129,6 +136,7 @@ const s = {
     fontSize: 14,
     cursor: "pointer",
     fontFamily: "'Cygre Light', sans-serif",
+    transition: "all 0.25s ease",
   },
 
   confirmBanner: {
@@ -139,6 +147,7 @@ const s = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: 20,
   },
 
   confirmBody: {
@@ -183,7 +192,6 @@ const Booking = () => {
   );
 
   const [isFlying, setIsFlying] = useState(false);
-
   const [selectedChip, setSelectedChip] = useState("");
   const [formData, setFormData] = useState({});
   const [itinerary, setItinerary] = useState("");
@@ -209,29 +217,58 @@ const Booking = () => {
   };
 
   const handleSubmit = () => {
-    const name = document.getElementById("f-name").value.trim();
-    const mobile = document.getElementById("f-mobile").value.trim();
-    const from = document.getElementById("f-from").value.trim();
-    const to = document.getElementById("f-to").value.trim();
+    const firstName = document
+      .getElementById("f-first-name")
+      .value.trim();
 
-    if (!name || !mobile || !from || !to) {
-      alert("Please fill in Name, Mobile, From and To at minimum.");
+    const lastName = document
+      .getElementById("f-last-name")
+      .value.trim();
+
+    const mobile = document
+      .getElementById("f-mobile")
+      .value.trim();
+
+    const from = document
+      .getElementById("f-from")
+      .value.trim();
+
+    const to = document
+      .getElementById("f-to")
+      .value.trim();
+
+    if (!firstName || !lastName || !mobile || !from || !to) {
+      alert(
+        "Please fill in First Name, Last Name, Mobile, From and To at minimum."
+      );
       return;
     }
 
+    const email =
+      document.getElementById("f-email").value.trim() || "—";
+
+    const count =
+      document.getElementById("f-count").value || "—";
+
+    const notes = document
+      .getElementById("f-notes")
+      .value.trim();
+
+    const fullName = `${firstName} ${lastName}`;
+
     setFormData({
-      name,
+      firstName,
+      lastName,
+      name: fullName,
       mobile,
-      email:
-        document.getElementById("f-email").value.trim() || "—",
-      designation:
-        document.getElementById("f-designation").value.trim() || "—",
-      count: document.getElementById("f-count").value || "—",
-      notes: document.getElementById("f-notes").value.trim(),
+      email,
+      count,
+      notes,
       route: from + "  →  " + to,
       travelType: selectedChip || "—",
     });
 
+    setItinerary("");
     setStep(2);
   };
 
@@ -275,31 +312,93 @@ Route: ${formData.route}
 Travel Type: ${formData.travelType}
 Travellers: ${formData.count}`;
 
-    navigator.clipboard.writeText(details).then(() => {
-      alert("Booking details copied! Paste in Zoho Mail.");
-    });
+    navigator.clipboard
+      .writeText(details)
+      .then(() => {
+        alert("Booking details copied! Paste in Zoho Mail.");
+      })
+      .catch(() => {
+        alert("Could not copy booking details.");
+      });
   };
 
   const generateItinerary = async () => {
     setItinerary("Generating your itinerary... please wait");
 
     try {
-      const response = await fetch("/api/itinerary", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          route: formData.route,
-          type: formData.travelType,
-          count: formData.count,
-          notes: formData.notes,
-        }),
-      });
+      const query = `
+Create a travel itinerary for this booking.
 
-      const data = await response.json();
-      setItinerary(data.itinerary);
+Traveller: ${formData.name}
+Route: ${formData.route}
+Travel Type: ${formData.travelType}
+Number of Travellers: ${formData.count}
+Special Requirements: ${formData.notes || "None"}
+
+Create a practical and detailed day-by-day travel itinerary.
+Include suggested places to visit, activities, food suggestions,
+and useful travel tips where appropriate.
+Keep the itinerary clear and easy for a traveller to follow.
+`;
+
+      const response = await fetch(
+        `${TRIPMATE_API_URL}/plan-trip`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query,
+          }),
+        }
+      );
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error(
+          `TripMate AI returned an invalid response (${response.status}).`
+        );
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error ||
+            `TripMate AI request failed with status ${response.status}.`
+        );
+      }
+
+      if (!data?.itinerary?.days?.length) {
+        throw new Error(
+          "TripMate AI returned no itinerary days."
+        );
+      }
+
+      const formattedItinerary = data.itinerary.days
+        .map((day) => {
+          const activities = Array.isArray(day.activities)
+            ? day.activities
+                .map((activity) => `• ${activity}`)
+                .join("\n")
+            : "";
+
+          return `DAY ${day.day}
+${day.theme || "Travel Experience"}
+
+${activities}`;
+        })
+        .join("\n\n");
+
+      setItinerary(formattedItinerary);
     } catch (error) {
+      console.error(
+        "Generate itinerary failed:",
+        error
+      );
+
       setItinerary(
         "Could not generate itinerary. Please try again."
       );
@@ -322,10 +421,12 @@ Travellers: ${formData.count}`;
     fontSize: 14,
     fontFamily: "'Cygre Light', sans-serif",
     letterSpacing: 0.5,
+    transition: "all 0.2s ease",
   });
 
   return (
     <div style={s.page}>
+      {/* Header */}
       <div
         style={{
           display: "flex",
@@ -359,6 +460,7 @@ Travellers: ${formData.count}`;
         </div>
       </div>
 
+      {/* STEP 1 */}
       {step === 1 && (
         <div>
           <h2 style={s.heading}>
@@ -372,35 +474,65 @@ Travellers: ${formData.count}`;
           </p>
 
           <div style={s.card}>
+            {/* Traveller Details */}
             <div style={s.sectionLabel}>
               Traveller Details
             </div>
 
             <div style={s.grid2}>
+              {/* First Name */}
               <div>
                 <label style={s.fieldLabel}>
-                  Full Name
+                  First Name
                 </label>
 
                 <input
-                  id="f-name"
+                  id="f-first-name"
                   style={s.input}
-                  placeholder="e.g. Priya Sharma"
+                  placeholder="e.g. Priya"
+                  autoComplete="given-name"
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#dda15e";
+                    e.target.style.background =
+                      "rgba(221,161,94,0.04)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(221,161,94,0.08)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#bc6c25";
+                    e.target.style.background = "transparent";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
               </div>
 
+              {/* Last Name */}
               <div>
                 <label style={s.fieldLabel}>
-                  Designation
+                  Last Name
                 </label>
 
                 <input
-                  id="f-designation"
+                  id="f-last-name"
                   style={s.input}
-                  placeholder="e.g. Manager"
+                  placeholder="e.g. Sharma"
+                  autoComplete="family-name"
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#dda15e";
+                    e.target.style.background =
+                      "rgba(221,161,94,0.04)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(221,161,94,0.08)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#bc6c25";
+                    e.target.style.background = "transparent";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
               </div>
 
+              {/* Mobile */}
               <div>
                 <label style={s.fieldLabel}>
                   Mobile
@@ -408,11 +540,26 @@ Travellers: ${formData.count}`;
 
                 <input
                   id="f-mobile"
+                  type="tel"
                   style={s.input}
                   placeholder="+91 98765 43210"
+                  autoComplete="tel"
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#dda15e";
+                    e.target.style.background =
+                      "rgba(221,161,94,0.04)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(221,161,94,0.08)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#bc6c25";
+                    e.target.style.background = "transparent";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
               </div>
 
+              {/* Email */}
               <div>
                 <label style={s.fieldLabel}>
                   Email
@@ -420,19 +567,35 @@ Travellers: ${formData.count}`;
 
                 <input
                   id="f-email"
+                  type="email"
                   style={s.input}
                   placeholder="you@example.com"
+                  autoComplete="email"
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#dda15e";
+                    e.target.style.background =
+                      "rgba(221,161,94,0.04)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(221,161,94,0.08)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#bc6c25";
+                    e.target.style.background = "transparent";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
               </div>
             </div>
 
             <div style={s.divider} />
 
+            {/* Trip Details */}
             <div style={s.sectionLabel}>
               Trip Details
             </div>
 
             <div style={s.grid3}>
+              {/* From */}
               <div>
                 <label style={s.fieldLabel}>
                   From
@@ -442,9 +605,23 @@ Travellers: ${formData.count}`;
                   id="f-from"
                   style={s.input}
                   placeholder="Origin city"
+                  autoComplete="address-level2"
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#dda15e";
+                    e.target.style.background =
+                      "rgba(221,161,94,0.04)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(221,161,94,0.08)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#bc6c25";
+                    e.target.style.background = "transparent";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
               </div>
 
+              {/* To */}
               <div>
                 <label style={s.fieldLabel}>
                   To
@@ -458,6 +635,18 @@ Travellers: ${formData.count}`;
                   onChange={(e) =>
                     handleDestinationChange(e.target.value)
                   }
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#dda15e";
+                    e.target.style.background =
+                      "rgba(221,161,94,0.04)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(221,161,94,0.08)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#bc6c25";
+                    e.target.style.background = "transparent";
+                    e.target.style.boxShadow = "none";
+                  }}
                 />
 
                 {isFlying && (
@@ -473,6 +662,7 @@ Travellers: ${formData.count}`;
                 )}
               </div>
 
+              {/* Number of Travellers */}
               <div>
                 <label style={s.fieldLabel}>
                   No. of Travellers
@@ -483,6 +673,7 @@ Travellers: ${formData.count}`;
                   style={{
                     ...s.input,
                     cursor: "pointer",
+                    colorScheme: "dark",
                   }}
                 >
                   <option
@@ -547,6 +738,7 @@ Travellers: ${formData.count}`;
 
             <div style={s.divider} />
 
+            {/* Travel Type */}
             <div style={s.sectionLabel}>
               Travel Type
             </div>
@@ -562,10 +754,22 @@ Travellers: ${formData.count}`;
                 <button
                   key={chip}
                   type="button"
-                  onClick={() =>
-                    setSelectedChip(chip)
-                  }
+                  onClick={() => setSelectedChip(chip)}
                   style={chipStyle(chip)}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor =
+                      "#dda15e";
+                    e.currentTarget.style.transform =
+                      "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor =
+                      selectedChip === chip
+                        ? "#dda15e"
+                        : "#bc6c25";
+                    e.currentTarget.style.transform =
+                      "translateY(0)";
+                  }}
                 >
                   {chip}
                 </button>
@@ -574,6 +778,7 @@ Travellers: ${formData.count}`;
 
             <div style={s.divider} />
 
+            {/* Special Requirements */}
             <div style={s.sectionLabel}>
               Special Requirements
             </div>
@@ -587,8 +792,21 @@ Travellers: ${formData.count}`;
                 resize: "none",
                 width: "100%",
               }}
+              onFocus={(e) => {
+                e.target.style.borderColor = "#dda15e";
+                e.target.style.background =
+                  "rgba(221,161,94,0.04)";
+                e.target.style.boxShadow =
+                  "0 0 0 3px rgba(221,161,94,0.08)";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "#bc6c25";
+                e.target.style.background = "transparent";
+                e.target.style.boxShadow = "none";
+              }}
             />
 
+            {/* Footer */}
             <div style={s.footer}>
               <span style={s.note}>
                 Auto-synced to Google Sheets and Zoho CRM
@@ -598,6 +816,18 @@ Travellers: ${formData.count}`;
                 type="button"
                 style={s.btnGold}
                 onClick={handleSubmit}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "#dda15e";
+                  e.currentTarget.style.transform =
+                    "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background =
+                    "#bc6c25";
+                  e.currentTarget.style.transform =
+                    "translateY(0)";
+                }}
               >
                 Generate Summary
               </button>
@@ -606,6 +836,7 @@ Travellers: ${formData.count}`;
         </div>
       )}
 
+      {/* STEP 2 */}
       {step === 2 && (
         <div>
           <h2 style={s.heading}>
@@ -620,14 +851,15 @@ Travellers: ${formData.count}`;
             style={{
               ...s.card,
               padding: 0,
+              overflow: "hidden",
             }}
           >
+            {/* Confirmation Header */}
             <div style={s.confirmBanner}>
               <div>
                 <div
                   style={{
-                    fontFamily:
-                      "'Italiana', sans-serif",
+                    fontFamily: "'Italiana', sans-serif",
                     fontSize: 28,
                     letterSpacing: 2,
                     fontWeight: 100,
@@ -648,8 +880,7 @@ Travellers: ${formData.count}`;
 
               <div
                 style={{
-                  background:
-                    "rgba(255,255,255,0.15)",
+                  background: "rgba(255,255,255,0.15)",
                   borderRadius: 10,
                   padding: "10px 18px",
                   textAlign: "center",
@@ -677,40 +908,21 @@ Travellers: ${formData.count}`;
               </div>
             </div>
 
+            {/* Confirmation Body */}
             <div style={s.confirmBody}>
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns:
-                    "1fr 1fr",
+                  gridTemplateColumns: "1fr 1fr",
                   gap: 0,
                 }}
               >
                 {[
-                  [
-                    "Traveller Name",
-                    formData.name,
-                  ],
-                  [
-                    "Designation",
-                    formData.designation,
-                  ],
-                  [
-                    "Mobile",
-                    formData.mobile,
-                  ],
-                  [
-                    "Email",
-                    formData.email,
-                  ],
-                  [
-                    "Travel Type",
-                    formData.travelType,
-                  ],
-                  [
-                    "No. of Travellers",
-                    formData.count,
-                  ],
+                  ["Traveller Name", formData.name],
+                  ["Mobile", formData.mobile],
+                  ["Email", formData.email],
+                  ["Travel Type", formData.travelType],
+                  ["No. of Travellers", formData.count],
                 ].map(([label, value], i) => (
                   <div
                     key={i}
@@ -726,21 +938,18 @@ Travellers: ${formData.count}`;
                           : "none",
                     }}
                   >
-                    <div
-                      style={s.confirmLabel}
-                    >
+                    <div style={s.confirmLabel}>
                       {label}
                     </div>
 
-                    <div
-                      style={s.confirmValue}
-                    >
+                    <div style={s.confirmValue}>
                       {value}
                     </div>
                   </div>
                 ))}
               </div>
 
+              {/* Special Requirements */}
               {formData.notes && (
                 <div
                   style={{
@@ -748,19 +957,17 @@ Travellers: ${formData.count}`;
                     padding: 20,
                     background: "#1a1a1a",
                     borderRadius: 12,
-                    borderLeft:
-                      "3px solid #bc6c25",
+                    borderLeft: "3px solid #bc6c25",
                   }}
                 >
-                  <div
-                    style={s.confirmLabel}
-                  >
+                  <div style={s.confirmLabel}>
                     Special Requirement
                   </div>
 
                   <div
                     style={{
                       color: "#fefae0",
+                      lineHeight: 1.6,
                     }}
                   >
                     {formData.notes}
@@ -768,6 +975,7 @@ Travellers: ${formData.count}`;
                 </div>
               )}
 
+              {/* AI Itinerary */}
               {itinerary && (
                 <div
                   style={{
@@ -775,16 +983,13 @@ Travellers: ${formData.count}`;
                     padding: 20,
                     background: "#1a1a1a",
                     borderRadius: 12,
-                    borderLeft:
-                      "3px solid #dda15e",
+                    borderLeft: "3px solid #dda15e",
                     whiteSpace: "pre-wrap",
                     lineHeight: 1.6,
                     color: "#fefae0",
                   }}
                 >
-                  <div
-                    style={s.confirmLabel}
-                  >
+                  <div style={s.confirmLabel}>
                     AI Generated Itinerary
                   </div>
 
@@ -792,11 +997,24 @@ Travellers: ${formData.count}`;
                 </div>
               )}
 
+              {/* Actions */}
               <div style={s.actions}>
                 <button
                   type="button"
                   style={s.btnOutline}
                   onClick={() => setStep(1)}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background =
+                      "rgba(188,108,37,0.1)";
+                    e.currentTarget.style.borderColor =
+                      "#dda15e";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background =
+                      "transparent";
+                    e.currentTarget.style.borderColor =
+                      "#bc6c25";
+                  }}
                 >
                   Edit Details
                 </button>

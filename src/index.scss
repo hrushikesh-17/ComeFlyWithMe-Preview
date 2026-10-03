@@ -75,18 +75,69 @@ button {
 
 input {
   outline: none;
+  color: $text-orange;
+  background-color: transparent;
 
-  &:-webkit-autofill {
-    background-color: transparent !important;
-    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-    -webkit-text-fill-color: $text-orange !important;
-    transition: background-color 5000s ease-in-out 0s;
+  &::placeholder {
+    color: rgba(254, 250, 224, 0.45);
+    opacity: 1;
   }
 
-  &:-webkit-autofill:focus {
-    background-color: transparent !important;
-    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  /* Chrome / Edge / Safari autofill */
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
     -webkit-text-fill-color: $text-orange !important;
+    caret-color: $text-orange !important;
+
+    background-color: transparent !important;
+
+    -webkit-box-shadow:
+      0 0 0 1000px $gray inset !important;
+
+    box-shadow:
+      0 0 0 1000px $gray inset !important;
+
+    transition:
+      background-color 9999s ease-in-out 0s;
+  }
+
+  /* Firefox autofill */
+  &:autofill {
+    color: $text-orange !important;
+    background-color: $gray !important;
+  }
+}
+
+
+/* =====================================================
+   SELECT
+   ===================================================== */
+
+select {
+  color: $text-orange;
+  background-color: transparent;
+
+  option {
+    background-color: $gray;
+    color: $text-orange;
+  }
+}
+
+
+/* =====================================================
+   TEXTAREA
+   ===================================================== */
+
+textarea {
+  color: $text-orange;
+  background-color: transparent;
+  outline: none;
+
+  &::placeholder {
+    color: rgba(254, 250, 224, 0.45);
+    opacity: 1;
   }
 }
 
