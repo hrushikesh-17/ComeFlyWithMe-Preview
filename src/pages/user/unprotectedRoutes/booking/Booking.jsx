@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import logo from "@/assets/logo.webp";
 
 const TRIPMATE_API_URL =
   import.meta.env.VITE_TRIPMATE_API_URL ||
@@ -323,11 +322,17 @@ Travellers: ${formData.count}`;
   };
 
   const generateItinerary = async () => {
-    setItinerary("Generating your itinerary... please wait");
+    setItinerary("Generating your 6-day itinerary... please wait");
 
     try {
       const query = `
 Create a travel itinerary for this booking.
+
+IMPORTANT REQUIREMENT:
+Create EXACTLY 6 DAYS of itinerary.
+The itinerary MUST contain Day 1, Day 2, Day 3, Day 4, Day 5, and Day 6.
+Do NOT return 3 days, 4 days, 5 days, or any other duration.
+Do NOT shorten the itinerary.
 
 Traveller: ${formData.name}
 Route: ${formData.route}
@@ -335,10 +340,16 @@ Travel Type: ${formData.travelType}
 Number of Travellers: ${formData.count}
 Special Requirements: ${formData.notes || "None"}
 
-Create a practical and detailed day-by-day travel itinerary.
-Include suggested places to visit, activities, food suggestions,
-and useful travel tips where appropriate.
+Create a practical and detailed 6-day, day-by-day travel itinerary.
+
+For each of the 6 days:
+- Include suggested places to visit
+- Include activities
+- Include food suggestions
+- Include useful travel tips where appropriate
+
 Keep the itinerary clear and easy for a traveller to follow.
+Return exactly 6 itinerary days.
 `;
 
       const response = await fetch(
@@ -372,8 +383,12 @@ Keep the itinerary clear and easy for a traveller to follow.
       }
 
       if (!data?.itinerary?.days?.length) {
+        throw new Error("TripMate AI returned no itinerary days.");
+      }
+
+      if (data.itinerary.days.length !== 6) {
         throw new Error(
-          "TripMate AI returned no itinerary days."
+          `TripMate AI returned ${data.itinerary.days.length} days instead of exactly 6 days.`
         );
       }
 
@@ -394,13 +409,12 @@ ${activities}`;
 
       setItinerary(formattedItinerary);
     } catch (error) {
-      console.error(
-        "Generate itinerary failed:",
-        error
-      );
+      console.error("Generate itinerary failed:", error);
 
       setItinerary(
-        "Could not generate itinerary. Please try again."
+        error?.message?.includes("instead of exactly 6 days")
+          ? "TripMate AI did not return a 6-day itinerary. Please try again."
+          : "Could not generate itinerary. Please try again."
       );
     }
   };
@@ -431,21 +445,12 @@ ${activities}`;
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "flex-end",
           marginBottom: 48,
           paddingBottom: 24,
           borderBottom: "1px solid #bc6c25",
         }}
       >
-        <img
-          src={logo}
-          style={{
-            height: 60,
-            objectFit: "contain",
-          }}
-          alt="ComeFlyWithMe"
-        />
-
         <div
           style={{
             border: "1px solid #bc6c25",
@@ -807,11 +812,12 @@ ${activities}`;
             />
 
             {/* Footer */}
-            <div style={s.footer}>
-              <span style={s.note}>
-                Auto-synced to Google Sheets and Zoho CRM
-              </span>
-
+            <div
+              style={{
+                ...s.footer,
+                justifyContent: "flex-end",
+              }}
+            >
               <button
                 type="button"
                 style={s.btnGold}
