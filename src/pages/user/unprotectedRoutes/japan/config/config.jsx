@@ -1,10 +1,10 @@
 // Assets
-import heroImg from "@/assets/japan(1).jpg";
-import img1 from "@/assets/japan(1).jpg";
-import img2 from "@/assets/japan(2).jpg";
-import img3 from "@/assets/japan(3).jpg";
-import img4 from "@/assets/japan(4).jpg";
-import img5 from "@/assets/japan(5).jpg";
+import heroImg from "@/assets/optimized/japan(1).webp";
+import img1 from "@/assets/optimized/japan(1).webp";
+import img2 from "@/assets/optimized/japan(2).webp";
+import img3 from "@/assets/optimized/japan(3).webp";
+import img4 from "@/assets/optimized/japan(4).webp";
+import img5 from "@/assets/optimized/japan(5).webp";
 
 export const data = {
   title: "Japan",

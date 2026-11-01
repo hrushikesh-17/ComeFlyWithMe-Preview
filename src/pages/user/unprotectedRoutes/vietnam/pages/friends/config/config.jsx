@@ -1,8 +1,8 @@
 // Assets
-import heroImg from "@/assets/vietnamHero.webp";
+import heroImg from "@/assets/optimized/vietnamHero.webp";
 import friendsStandard from "@/assets/vietnam2.webp";
-import friendsDelux from "@/assets/vietnam3.webp";
-import friendsPremium from "@/assets/vietnam4.webp";
+import friendsDelux from "@/assets/optimized/vietnam3.webp";
+import friendsPremium from "@/assets/optimized/vietnam4.webp";
 
 export const data = {
   title: "Friends Package",

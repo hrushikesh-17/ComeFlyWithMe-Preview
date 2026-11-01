@@ -13,15 +13,15 @@ import levelOneCustomLogo from "@/assets/levelOneCustomLogo.webp";
 
 // Package Images
 import malaysiaFriendsStandard from "@/assets/malaysia1.jpg";
-import malaysiaFriendsDelux from "@/assets/malaysia2.jpg";
+import malaysiaFriendsDelux from "@/assets/optimized/malaysia2.webp";
 import malaysiaFriendsPremium from "@/assets/malaysia3.jpg";
 
 // Gallery Images
 import malaysiaGallery1 from "@/assets/malaysia1.jpg";
-import malaysiaGallery2 from "@/assets/malaysia2.jpg";
+import malaysiaGallery2 from "@/assets/optimized/malaysia2.webp";
 import malaysiaGallery3 from "@/assets/malaysia3.jpg";
-import malaysiaGallery4 from "@/assets/malaysia4.jpg";
-import malaysiaGallery5 from "@/assets/malaysia5.jpg";
+import malaysiaGallery4 from "@/assets/optimized/malaysia4.webp";
+import malaysiaGallery5 from "@/assets/optimized/malaysia5.webp";
 
 // =====================================================
 // PAGE DATA

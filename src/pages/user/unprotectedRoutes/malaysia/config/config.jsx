@@ -2,10 +2,10 @@
 import heroImg from "@/assets/malaysia.jpg";
 
 import img1 from "@/assets/malaysia1.jpg";
-import img2 from "@/assets/malaysia2.jpg";
+import img2 from "@/assets/optimized/malaysia2.webp";
 import img3 from "@/assets/malaysia3.jpg";
-import img4 from "@/assets/malaysia4.jpg";
-import img5 from "@/assets/malaysia5.jpg";
+import img4 from "@/assets/optimized/malaysia4.webp";
+import img5 from "@/assets/optimized/malaysia5.webp";
 
 export const data = {
   title: "Malaysia",

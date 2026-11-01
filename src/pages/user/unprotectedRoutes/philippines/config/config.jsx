@@ -4,7 +4,7 @@ import img1 from "@/assets/philippines1.jpg";
 import img2 from "@/assets/philippines2.jpg";
 import img3 from "@/assets/philippines3.jpg";
 import img4 from "@/assets/philippines4.jpg";
-import img5 from "@/assets/philippines5.jpg";
+import img5 from "@/assets/optimized/philippines5.webp";
 
 export const data = {
   title: "Philippines",

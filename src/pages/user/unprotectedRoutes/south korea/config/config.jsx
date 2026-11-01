@@ -2,9 +2,9 @@
 import heroImg from "@/assets/seoul(1).jpg";
 import img1 from "@/assets/seoul(1).jpg";
 import img2 from "@/assets/seoul(2).jpg";
-import img3 from "@/assets/seoul(3).jpg";
-import img4 from "@/assets/seoul(4).jpg";
-import img5 from "@/assets/seoul(5).jpg";
+import img3 from "@/assets/optimized/seoul(3).webp";
+import img4 from "@/assets/optimized/seoul(4).webp";
+import img5 from "@/assets/optimized/seoul(5).webp";
 
 export const data = {
   title: "South Korea",

@@ -1,9 +1,9 @@
 // Assets
 import heroImg from "@/assets/singapore.jpg";
-import img1 from "@/assets/singapore1.jpg";
+import img1 from "@/assets/optimized/singapore1.webp";
 import img2 from "@/assets/singapore2.jpg";
-import img3 from "@/assets/singapore3.jpg";
-import img4 from "@/assets/singapore4.jpg";
+import img3 from "@/assets/optimized/singapore3.webp";
+import img4 from "@/assets/optimized/singapore4.webp";
 import img5 from "@/assets/singapore5.jpg";
 
 export const data = {

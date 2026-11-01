@@ -20,10 +20,10 @@ import phuketHero from "@/assets/phuketHero.webp";
 import vietnam from "@/assets/vietnam.jpg";
 import vietnam1 from "@/assets/vietnam1.webp";
 import vietnam2 from "@/assets/vietnam2.webp";
-import vietnam3 from "@/assets/vietnam3.webp";
-import vietnam4 from "@/assets/vietnam4.webp";
+import vietnam3 from "@/assets/optimized/vietnam3.webp";
+import vietnam4 from "@/assets/optimized/vietnam4.webp";
 import vietnam5 from "@/assets/vietnam5.webp";
-import vietnamHero from "@/assets/vietnamHero.webp";
+import vietnamHero from "@/assets/optimized/vietnamHero.webp";
 
 // Malaysia
 import malaysia from "@/assets/malaysia.jpg";

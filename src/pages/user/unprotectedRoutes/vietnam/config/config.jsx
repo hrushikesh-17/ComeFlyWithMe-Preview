@@ -2,8 +2,8 @@
 import heroImg from "@/assets/vietnam.jpg";
 import img1 from "@/assets/vietnam1.webp";
 import img2 from "@/assets/vietnam2.webp";
-import img3 from "@/assets/vietnam3.webp";
-import img4 from "@/assets/vietnam4.webp";
+import img3 from "@/assets/optimized/vietnam3.webp";
+import img4 from "@/assets/optimized/vietnam4.webp";
 import img5 from "@/assets/vietnam5.webp";
 
 export const data = {

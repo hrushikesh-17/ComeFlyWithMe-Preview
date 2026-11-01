@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import "./signatureDestinations.scss";
 
 // Assets
-import indonesiaImg from "@/assets/indonesia.jpg";
-import thailandImg from "@/assets/thailand.jpg";
+import indonesiaImg from "@/assets/optimized/indonesia.webp";
+import thailandImg from "@/assets/optimized/thailand.webp";
 import vietnamImg from "@/assets/vietnam.jpg";
 import malaysiaImg from "@/assets/malaysia.jpg";
 import singaporeImg from "@/assets/singapore.jpg";
 import philippinesImg from "@/assets/philippines.jpg";
-import japanImg from "@/assets/japan(1).jpg";
+import japanImg from "@/assets/optimized/japan(1).webp";
 import southKoreaImg from "@/assets/seoul(1).jpg";
 
 const destinations = [

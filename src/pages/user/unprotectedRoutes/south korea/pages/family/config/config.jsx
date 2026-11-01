@@ -1,8 +1,8 @@
 import seoul1 from "@/assets/seoul(1).jpg";
 import seoul2 from "@/assets/seoul(2).jpg";
-import seoul3 from "@/assets/seoul(3).jpg";
-import seoul4 from "@/assets/seoul(4).jpg";
-import seoul5 from "@/assets/seoul(5).jpg";
+import seoul3 from "@/assets/optimized/seoul(3).webp";
+import seoul4 from "@/assets/optimized/seoul(4).webp";
+import seoul5 from "@/assets/optimized/seoul(5).webp";
 
 export const data = {
   title: "Family Package",
