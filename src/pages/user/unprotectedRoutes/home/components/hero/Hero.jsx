@@ -2,9 +2,6 @@
 import { useEffect, useState } from "react";
 import "./hero.scss";
 
-import { motion } from "framer-motion";
-import { fadeInAnimation } from "@/utils/animations/animations";
-
 // Assets
 import heroVideo from "@/assets/heroVideo-optimized.mp4";
 import heroPoster from "@/assets/hero-poster.webp";
@@ -58,12 +55,7 @@ const Hero = () => {
         />
       )}
 
-      <motion.div
-        className="content"
-        variants={fadeInAnimation}
-        initial="initial"
-        whileInView="animate"
-      >
+      <div className="content">
         <div className="left">
           <h2>Welcome to</h2>
           <h1>Come fly with me</h1>
@@ -73,7 +65,7 @@ const Hero = () => {
           <p>Scroll to explore</p>
           <img src={heroArrow} alt="" />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
