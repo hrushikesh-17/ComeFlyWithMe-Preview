@@ -17,7 +17,7 @@ import phuket4 from "@/assets/phuket4.webp";
 import phuketHero from "@/assets/phuketHero.webp";
 
 // Vietnam
-import vietnam from "@/assets/vietnam.jpg";
+import vietnam from "@/assets/optimized/vietnam.webp";
 import vietnam1 from "@/assets/vietnam1.webp";
 import vietnam2 from "@/assets/vietnam2.webp";
 import vietnam3 from "@/assets/optimized/vietnam3.webp";
@@ -26,13 +26,13 @@ import vietnam5 from "@/assets/vietnam5.webp";
 import vietnamHero from "@/assets/optimized/vietnamHero.webp";
 
 // Malaysia
-import malaysia from "@/assets/malaysia.jpg";
+import malaysia from "@/assets/optimized/malaysia.webp";
 
 // Singapore
-import singapore from "@/assets/singapore.jpg";
+import singapore from "@/assets/optimized/singapore.webp";
 
 // Philippines
-import philippines from "@/assets/philippines.jpg";
+import philippines from "@/assets/optimized/philippines.webp";
 
 // =====================================================
 // DESTINATION MAP

@@ -4,12 +4,12 @@ import "./signatureDestinations.scss";
 // Assets
 import indonesiaImg from "@/assets/optimized/indonesia.webp";
 import thailandImg from "@/assets/optimized/thailand.webp";
-import vietnamImg from "@/assets/vietnam.jpg";
-import malaysiaImg from "@/assets/malaysia.jpg";
-import singaporeImg from "@/assets/singapore.jpg";
-import philippinesImg from "@/assets/philippines.jpg";
+import vietnamImg from "@/assets/optimized/vietnam.webp";
+import malaysiaImg from "@/assets/optimized/malaysia.webp";
+import singaporeImg from "@/assets/optimized/singapore.webp";
+import philippinesImg from "@/assets/optimized/philippines.webp";
 import japanImg from "@/assets/optimized/japan(1).webp";
-import southKoreaImg from "@/assets/seoul(1).jpg";
+import southKoreaImg from "@/assets/optimized/seoul(1).webp";
 
 const destinations = [
   {

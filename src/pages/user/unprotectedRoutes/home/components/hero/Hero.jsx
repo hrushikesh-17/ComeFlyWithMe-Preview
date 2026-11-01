@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import "./hero.scss";
 
@@ -32,7 +33,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <div className="overlay"></div>
+      <div className="overlay" aria-hidden="true"></div>
 
       {isDesktop ? (
         <video
@@ -50,6 +51,9 @@ const Hero = () => {
           className="hero-poster"
           src={heroPoster}
           alt=""
+          width={1280}
+          height={720}
+          loading="eager"
           fetchPriority="high"
         />
       )}
